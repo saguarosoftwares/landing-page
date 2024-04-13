@@ -18,8 +18,7 @@ export const useForm = (validate: any) => {
     event.preventDefault();
     setErrors(validate(values));
     // Your url for API
-    // TODO https://formspree.io/forms/mzbnkawg/integration
-    const url = "";
+    const url = "https://formspree.io/f/mzbnkawg";
     if (Object.keys(values).length === 3) {
       axios
         .post(url, {

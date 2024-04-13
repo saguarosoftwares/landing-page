@@ -129,7 +129,7 @@ export const FooterContainer = styled("div")`
 export const Language = styled("h4")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #74C365;
+  color: #148952;
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;

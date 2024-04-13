@@ -32,7 +32,7 @@ export const Styles = createGlobalStyle`
     }
 
     a:hover {
-        color: #74C365;
+        color: #148952;
     }
 
     input,
@@ -47,7 +47,7 @@ export const Styles = createGlobalStyle`
 
         :focus-within {
             background: none;
-            box-shadow: #74C365 0px 0px 0px 1px;
+            box-shadow: #148952 0px 0px 0px 1px;
         }
     }
 
@@ -72,7 +72,7 @@ export const Styles = createGlobalStyle`
     }
 
     p {
-        color: #74C365;
+        color: #148952;
         font-size: 21px;        
         line-height: 1.41;
     }
@@ -84,10 +84,10 @@ export const Styles = createGlobalStyle`
     a {
         text-decoration: none;
         outline: none;
-        color: #74C365;
+        color: #148952;
 
         :hover {
-            color: #74C365;
+            color: #148952;
         }
     }
     
