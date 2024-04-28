@@ -1,3 +1,4 @@
+// Assuming MiddleBlockProps interface is updated to include backgroundImage
 import { Row, Col } from "antd";
 import { withTranslation } from "react-i18next";
 import { Slide } from "react-awesome-reveal";
@@ -8,18 +9,20 @@ interface MiddleBlockProps {
   title: string;
   content: string;
   button: string;
+  backgroundImage?: string;  // Optional background image URL
   t: any;
 }
 
-const MiddleBlock = ({ title, content, button, t }: MiddleBlockProps) => {
+const MiddleBlock = ({ title, content, button, backgroundImage, t }: MiddleBlockProps) => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id) as HTMLDivElement;
     element.scrollIntoView({
       behavior: "smooth",
     });
   };
+
   return (
-    <MiddleBlockSection>
+    <MiddleBlockSection backgroundImage={backgroundImage}>
       <Slide direction="up">
         <Row justify="center" align="middle">
           <ContentWrapper>

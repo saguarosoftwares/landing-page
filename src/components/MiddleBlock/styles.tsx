@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
-export const MiddleBlockSection = styled("section")`
+interface MiddleBlockSectionProps {
+  backgroundImage?: string
+}
+
+// export const MiddleBlockSection = styled("section")`
+export const MiddleBlockSection = styled.section<MiddleBlockSectionProps>`
   position: relative;
   padding: 7.5rem 0 3rem;
   text-align: center;
   display: flex;
   justify-content: center;
+
+  background-image: url(/img/svg/${props => props.backgroundImage});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 
   @media screen and (max-width: 1024px) {
     padding: 5.5rem 0 3rem;
