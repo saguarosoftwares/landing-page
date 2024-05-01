@@ -6,16 +6,23 @@ interface MiddleBlockSectionProps {
 
 // export const MiddleBlockSection = styled("section")`
 export const MiddleBlockSection = styled.section<MiddleBlockSectionProps>`
+  // height: 100vh; /* 100% of the viewport height */
+  // width: 100vw; /* 100% of the viewport width */
   position: relative;
   padding: 7.5rem 0 3rem;
   text-align: center;
   display: flex;
   justify-content: center;
 
-  background-image: url(/img/svg/${props => props.backgroundImage});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  // /* Use negative margins to extend the background image beyond the padding */
+  // margin: -7.5rem -60px -3rem;
+  // overflow: hidden; /* Hide overflow content outside the padding */
+
+  // background-image: url(/img/svg/${(props) => props.backgroundImage});
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-position: center;
+
 
   @media screen and (max-width: 1024px) {
     padding: 5.5rem 0 3rem;

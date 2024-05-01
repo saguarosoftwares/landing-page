@@ -3,17 +3,17 @@
   "name": "Saugaro - Saguaro Software Solutions",
   "icons": [
     {
-      "src": "img/icons/logo192.png",
+      "src": "img/icons/cactus512.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "img/icons/logo192.png",
+      "src": "img/icons/cactus512.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "img/icons/logo512.png",
+      "src": "img/icons/cactus512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

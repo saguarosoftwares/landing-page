@@ -23,11 +23,13 @@ export const Styles = createGlobalStyle`
 
 
     body {
+        background-color: #eee0d2;
+
         margin:0;
         padding:0;
         border: 0;
         outline: 0;
-        background: #fff;
+        // background: #fff;
         overflow-x: hidden;
     }
 
