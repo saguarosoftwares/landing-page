@@ -1,26 +1,4 @@
 {
-  "title": "Our Services",
-  "text": "Include, but are not limit to...",
-  "section": [
-    {
-      "title": "Custom Software Development",
-      "content": "Ant Design is a React UI library that has a lot of easy-to-use components for building elegant UI.",
-      "icon": "notes.svg"
-    },
-    {
-      "title": "API Integrations",
-      "content": "Styled Components gives you total control over your components.",
-      "icon": "notes.svg"
-    },
-    {
-      "title": "Tech. Consulting",
-      "content": "Styled Components gives you total control over your components.",
-      "icon": "notes.svg"
-    },
-    {
-      "title": "Data Analytics",
-      "content": "Styled Components gives you total control over your components.",
-      "icon": "notes.svg"
-    }
-  ]
+  "title": "About Us",
+  "text": "Based in the serene deserts of the United States, we are a driven team of experienced and passionate professionals, who strive to enhance the productivity of various businesses. But we're not just about business; we're about building relationships—genuine, lasting connections that transcend transactions. We believe in the power of collaboration, in the magic that happens when minds come together to create something extraordinary. We approach each challenge with enthusiasm and a spirit of adventure. "
 }
