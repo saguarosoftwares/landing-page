@@ -49,7 +49,7 @@ const Home = () => {
         type="left"
         title={AboutContent.title}
         content={AboutContent.text}
-        icon="ABOUT.svg"
+        icon="ANIMATED_PROGRAMMER.svg"
         id="about"
       />
       <Contact
