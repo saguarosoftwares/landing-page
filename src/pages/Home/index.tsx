@@ -35,21 +35,21 @@ const Home = () => {
         title={ServicesContent.title}
         content={ServicesContent.text}
         section={ServicesContent.section}
-        icon="saguaro_software_solutions.svg"
+        icon="SDLC.svg"
         id="services"
       />
       <ContentBlock
         type="right"
         title={MissionContent.title}
         content={MissionContent.text}
-        icon="saguaro_software_solutions.svg"
+        icon="MISSION.svg"
         id="mission"
       />
       <ContentBlock
         type="left"
         title={AboutContent.title}
         content={AboutContent.text}
-        icon="saguaro_software_solutions.svg"
+        icon="ABOUT.svg"
         id="about"
       />
       <Contact
