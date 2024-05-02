@@ -8,6 +8,7 @@ interface MiddleBlockSectionProps {
 export const MiddleBlockSection = styled.section<MiddleBlockSectionProps>`
   // height: 100vh; /* 100% of the viewport height */
   // width: 100vw; /* 100% of the viewport width */
+  
   position: relative;
   padding: 7.5rem 0 3rem;
   text-align: center;
