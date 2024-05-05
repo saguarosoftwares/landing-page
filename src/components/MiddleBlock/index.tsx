@@ -7,7 +7,7 @@ import { MiddleBlockSection, Content, ContentWrapper } from "./styles";
 
 interface MiddleBlockProps {
   title: string;
-  content: string;
+  content: string[];
   button: string;
   backgroundImage?: string;  // Optional background image URL
   t: any;
@@ -28,7 +28,10 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t }: MiddleBlock
           <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
               <h6>{t(title)}</h6>
-              <Content>{t(content)}</Content>
+              {/* Iterate through the list of strings in the content prop */}
+              {content.map((paragraph, index) => (
+                <Content key={index}>{t(paragraph)}</Content>
+              ))}
               {button && (
                 <Button name="submit" onClick={() => scrollTo("contact")}>
                   {t(button)}
@@ -39,7 +42,7 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t }: MiddleBlock
         </Row>
       </Slide>
     </MiddleBlockSection>
-  );
+  );  
 };
 
 export default withTranslation()(MiddleBlock);
