@@ -32,7 +32,7 @@ jobs:
       with:
           token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
           preview-branch: main
-          source-dir: .
+          source-dir: ./public
           umbrella-dir: pr-preview
           action: auto
       # run: |
