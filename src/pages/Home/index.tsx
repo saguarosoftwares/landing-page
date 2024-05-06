@@ -16,21 +16,21 @@ const Home = () => {
   return (
     <Container>
       <ScrollToTop />
-      <ContentBlock
+      {/* <ContentBlock
         type="right"
         title={IntroContent.title}
         content={IntroContent.text}
         button={IntroContent.button}
         icon="saguaro_software_solutions.svg"
         id="intro"
-      />
+      /> */}
       <MiddleBlock
         title={MiddleBlockContent.title}
         content={MiddleBlockContent.text}
         button={MiddleBlockContent.button}
-        backgroundImage="LANDING_BACKGROUND.svg"
+        backgroundImage="LANDING.svg"
       />
-      <ContentBlock
+      {/* <ContentBlock
         type="left"
         title={ServicesContent.title}
         content={ServicesContent.text}
@@ -51,12 +51,12 @@ const Home = () => {
         content={AboutContent.text}
         icon="ANIMATED_PROGRAMMER.svg"
         id="about"
-      />
+      />*/}
       <Contact
         title={ContactContent.title}
         content={ContactContent.text}
         id="contact"
-      />
+      /> 
     </Container>
   );
 };

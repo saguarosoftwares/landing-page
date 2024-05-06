@@ -5,6 +5,10 @@ import { MenuOutlined } from "@ant-design/icons";
 export const HeaderSection = styled("header")`
   padding: 1rem 0.5rem;
 
+  // padding: 2rem 1rem;  // Increase padding for more vertical space
+  // background-color: #f0f2f5;  // Assuming a light grey background from screenshot
+  // box-shadow: 0 2px 8px rgba(0,0,0,0.1);  // Soft shadow for depth, if that matches your design
+
   .ant-row-space-between {
     align-items: center;
     text-align: center;
@@ -13,6 +17,11 @@ export const HeaderSection = styled("header")`
 
 export const LogoContainer = styled(Link)`
   display: flex;
+  // align-items: center;  // Center align the logo vertically
+  // img {
+  //   height: 80px;  // Adjust the size as needed
+  //   width: auto;  // Maintain aspect ratio
+  // }
 `;
 
 export const NavLink = styled("div")`
@@ -74,6 +83,13 @@ export const CustomNavLinkSmall = styled(NavLink)`
 
   @media only screen and (max-width: 768px) {
     margin: 1.25rem 2rem;
+  // margin: 0 20px;  // Increase spacing if needed
+  // font-weight: bold;  // Make text bolder
+  // text-transform: uppercase;  // Stylistic choice for uppercase text
+
+  // &:hover, &:active, &:focus {
+  //   color: #0056b3;  // Change hover color to something more noticeable
+  //   text-decoration: none;  // Optional: remove underline on hover
   }
 `;
 

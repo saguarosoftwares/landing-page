@@ -10,18 +10,20 @@ const Router = () => {
     <Suspense fallback={null}>
       <Styles />
       <Header />
-      <Switch>
-        {routes.map((routeItem) => {
-          return (
-            <Route
-              key={routeItem.component}
-              path={routeItem.path}
-              exact={routeItem.exact}
-              component={lazy(() => import(`../pages/${routeItem.component}`))}
-            />
-          );
-        })}
-      </Switch>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}> {/* Ensure header and footer are centered */}
+        <Switch>
+          {routes.map((routeItem) => {
+            return (
+              <Route
+                key={routeItem.component}
+                path={routeItem.path}
+                exact={routeItem.exact}
+                component={lazy(() => import(`../pages/${routeItem.component}`))}
+              />
+            );
+          })}
+        </Switch>
+      </div>
       <Footer />
     </Suspense>
   );

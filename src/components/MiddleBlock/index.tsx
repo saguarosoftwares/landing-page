@@ -27,13 +27,13 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t }: MiddleBlock
         <Row justify="center" align="middle">
           <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
-              <h6>{t(title)}</h6>
-              <Content>{t(content)}</Content>
-              {button && (
+              {/* <h6>{t(title)}</h6> */}
+              {/* <Content>{t(content)}</Content> */}
+              {/* {button && (
                 <Button name="submit" onClick={() => scrollTo("mission")}>
                   {t(button)}
                 </Button>
-              )}
+              )} */}
             </Col>
           </ContentWrapper>
         </Row>

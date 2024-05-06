@@ -31,8 +31,10 @@ export const Styles = createGlobalStyle`
         outline: 0;
         // background: #fff;
         overflow-x: hidden;
+        // display: flex;
+        // flex-direction: column;
+        // min-height: 100vh; /* Ensure the content stretches to at least the height of the viewport */
     }
-
     a:hover {
         color: #148952;
     }
