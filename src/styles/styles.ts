@@ -14,11 +14,22 @@ export const Styles = createGlobalStyle`
         font-style: normal;
     }
 
+    @font-face {
+        font-family: "Poppins Sans Bold";
+        src: url("/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: "Poppins Sans Regular";
+        src: url("/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+        font-style: normal;
+    }
 
     body,
     html,
     a {
-        font-family: 'Motiva Sans Light', sans-serif;
+        font-family: 'Poppins Sans Regular', sans-serif;
     }
 
 
@@ -61,7 +72,7 @@ export const Styles = createGlobalStyle`
     h4,
     h5,
     h6 {
-        font-family: 'Motiva Sans Bold', serif;
+        font-family: 'Poppins Sans Bold', serif;
         color: #000000;
         font-size: 54px;
         line-height: 1.18;

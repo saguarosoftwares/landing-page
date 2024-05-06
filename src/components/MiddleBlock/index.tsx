@@ -7,7 +7,7 @@ import { MiddleBlockSection, Content, ContentWrapper } from "./styles";
 
 interface MiddleBlockProps {
   title: string;
-  content: string;
+  content: string[];
   button: string;
   backgroundImage?: string;  // Optional background image URL
   t: any;
@@ -39,7 +39,7 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t }: MiddleBlock
         </Row>
       </Slide>
     </MiddleBlockSection>
-  );
+  );  
 };
 
 export default withTranslation()(MiddleBlock);

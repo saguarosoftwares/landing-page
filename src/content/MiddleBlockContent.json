@@ -1,6 +1,5 @@
 {
-    "title": "Introduce your product quickly & effectively",
-    "text": "Landy comes with multi-lingual support, all of the content is stored in the JSON files, so that you can manage the texts without having any prior knowledge in developing web applications using React.js.",
-    "button": "Get started"
-  }
-  
+  "title": "Our Specializations",
+  "text": ["Where seamless integration and custom solutions converge to elevate your online presence.", "Specializing in full web app integration via platforms like Shopify and beyond, we bring your e-commerce vision to life with effortless functionality and user-friendly design.", "Harnessing the power of cutting-edge technologies such as Java Spring, Python Django, and Node.js, we craft bespoke solutions tailored to your unique needs. From intuitive user interfaces to robust backend systems, our expertise ensures that your web applications stand out in today's digital landscape.", "Discover how we can transform your online experience with our tailored solutions and expert guidance. Let's embark on this journey together, turning your ideas into reality."],
+  "button": "Get started"
+}
