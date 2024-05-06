@@ -1,0 +1,26 @@
+{
+  "title": "Our Services",
+  "text": "We have a plethora of services, from Web App Development to Artificial knowledge! Here, we've highlighted some of our best services.",
+  "section": [
+    {
+      "title": "Custom Software Development",
+      "content": "Custom software is important, which is why we provide solutions tailored to your needs. We adapt to your requirements, crafting innovative solutions for seamless integration and enhanced efficiency.",
+      "icon": "notes.svg"
+    },
+    {
+      "title": "API Integrations",
+      "content": "Unlock streamlined operations with our expert API integrations. From data synchronization to process automation, we tailor solutions to fit your unique needs seamlessly.",
+      "icon": "notes.svg"
+    },
+    {
+      "title": "Tech. Consulting",
+      "content": "Empower your business with strategic tech guidance. Our consulting services offer tailored solutions, propelling you forward in the ever-evolving digital landscape.",
+      "icon": "notes.svg"
+    },
+    {
+      "title": "Data Analytics",
+      "content": "Transform your data into actionable insights. Our analytics expertise uncovers trends, informs decisions, and drives growth for your business.",
+      "icon": "notes.svg"
+    }
+  ]
+}
