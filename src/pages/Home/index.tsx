@@ -16,21 +16,28 @@ const Home = () => {
   return (
     <Container>
       <ScrollToTop />
-      <ContentBlock
+      <MiddleBlock
+        title={IntroContent.title}
+        content={IntroContent.launchText}
+        button={MiddleBlockContent.button}
+        backgroundImage="LANDING_BUTE.svg"
+      />
+
+      {/* <ContentBlock
         type="right"
         title={IntroContent.title}
         content={IntroContent.text}
         button={IntroContent.button}
         icon="saguaro_software_solutions.svg"
         id="intro"
-      />
-      <MiddleBlock
+      /> */}
+      {/* <MiddleBlock
         title={MiddleBlockContent.title}
         content={MiddleBlockContent.text}
         button={MiddleBlockContent.button}
-        backgroundImage="LANDING_BACKGROUND.svg"
-      />
-      <ContentBlock
+        // backgroundImage="LANDING_BACKGROUND.svg"
+      /> */}
+      {/* <ContentBlock
         type="left"
         title={ServicesContent.title}
         content={ServicesContent.text}
@@ -44,14 +51,14 @@ const Home = () => {
         content={MissionContent.text}
         icon="MISSION.svg"
         id="mission"
-      />
-      <ContentBlock
+      /> */}
+      {/* <ContentBlock
         type="left"
         title={AboutContent.title}
         content={AboutContent.text}
         icon="ANIMATED_PROGRAMMER.svg"
         id="about"
-      />
+      /> */}
       <Contact
         title={ContactContent.title}
         content={ContactContent.text}

@@ -15,8 +15,8 @@ export const Styles = createGlobalStyle`
     }
 
     @font-face {
-        font-family: "Poppins Sans Bold";
-        src: url("/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+        font-family: "Poppins Sans SemiBold";
+        src: url("/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
         font-style: normal;
     }
 
@@ -34,7 +34,7 @@ export const Styles = createGlobalStyle`
 
 
     body {
-        background-color: #eee0d2;
+        // background-color: #eee0d2;
 
         margin:0;
         padding:0;
@@ -70,7 +70,7 @@ export const Styles = createGlobalStyle`
     h4,
     h5,
     h6 {
-        font-family: 'Poppins Sans Bold', serif;
+        font-family: 'Poppins Sans SemiBold', serif;
         color: #000000;
         font-size: 54px;
         line-height: 1.18;
