@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 export const ContactContainer = styled("div")`
+  background-color: #597B73;
+  display: flex;              // Enables flexbox
+  justify-content: center;    // Horizontally center the content
+  align-items: center;        // Vertically center the content
+  flex-direction: column;     // Stack children vertically
   padding: 5rem 0;
 
   @media only screen and (max-width: 1024px) {
-    padding: 3rem 0;
+    // padding: 3rem 0;
   }
 `;
 

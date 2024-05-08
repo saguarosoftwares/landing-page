@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const FooterSection = styled("footer")`
+  // background-color: #F4DCDC;
   // background: rgb(241, 242, 243);
   padding: 2.5rem 0;
 `;
@@ -9,7 +10,7 @@ export const FooterSection = styled("footer")`
 export const Title = styled("h4")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #000000;
+  color: #D39381;
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;
@@ -30,11 +31,15 @@ export const NavLink = styled(Link)`
 `;
 
 export const Extra = styled("section")`
+  // background-color: #F4DCDC;
+
   // background: rgb(241, 242, 243);
   position: relative;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+  // padding-left: 2rem;
+
   padding-bottom: 2rem;
 `;
 
@@ -69,9 +74,9 @@ export const Large = styled(Link)<any>`
 `;
 
 export const Chat = styled("p")`
-  color: #000000;
+  color: #D39381;
   max-width: fit-content;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #D39381;
   cursor: pointer;
   margin-top: 1rem;
   transition: all 0.3s ease-in-out;
@@ -129,7 +134,7 @@ export const FooterContainer = styled("div")`
 export const Language = styled("h4")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #148952;
+  color: #FFFFFF;
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;
@@ -139,7 +144,7 @@ export const Language = styled("h4")`
 export const Label = styled("label")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #000000;
+  color: #D39381;
   display: block;
   margin-bottom: 2rem;
   font-family: "Poppins Sans SemiBold", serif;

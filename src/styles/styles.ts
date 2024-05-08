@@ -45,7 +45,7 @@ export const Styles = createGlobalStyle`
     }
 
     a:hover {
-        color: #148952;
+        color: #FFFFFF;
     }
 
     input,
@@ -60,7 +60,7 @@ export const Styles = createGlobalStyle`
 
         :focus-within {
             background: none;
-            box-shadow: #148952 0px 0px 0px 1px;
+            box-shadow: #FFFFFF 0px 0px 0px 1px;
         }
     }
 
@@ -71,7 +71,7 @@ export const Styles = createGlobalStyle`
     h5,
     h6 {
         font-family: 'Poppins Sans SemiBold', serif;
-        color: #000000;
+        color: #D39381;
         font-size: 54px;
         line-height: 1.18;
 
@@ -85,7 +85,7 @@ export const Styles = createGlobalStyle`
     }
 
     p {
-        color: #148952;
+        color: #FFFFFF;
         font-size: 21px;        
         line-height: 1.41;
     }
@@ -97,10 +97,10 @@ export const Styles = createGlobalStyle`
     a {
         text-decoration: none;
         outline: none;
-        color: #148952;
+        color: #FFFFFF;
 
         :hover {
-            color: #148952;
+            color: #FFFFFF;
         }
     }
     

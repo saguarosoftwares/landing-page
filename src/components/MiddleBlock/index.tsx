@@ -27,16 +27,16 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t }: MiddleBlock
         <Row justify="center" align="middle">
           <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
-              <h6>{t(title)}</h6>
+              {/* <h6>{t(title)}</h6> */}
               {/* Iterate through the list of strings in the content prop */}
-              {content.map((paragraph, index) => (
+              {/* {content.map((paragraph, index) => (
                 <Content key={index}>{t(paragraph)}</Content>
-              ))}
-              {button && (
+              ))} */}
+              {/* {button && (
                 <Button name="submit" onClick={() => scrollTo("contact")}>
                   {t(button)}
                 </Button>
-              )}
+              )} */}
             </Col>
           </ContentWrapper>
         </Row>
