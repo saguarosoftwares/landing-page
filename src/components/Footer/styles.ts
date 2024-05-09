@@ -31,9 +31,14 @@ export const NavLink = styled(Link)`
 `;
 
 export const Extra = styled("section")`
-  // background-color: #F4DCDC;
+  background-color: #F4DCDC;
 
   // background: rgb(241, 242, 243);
+  // background-image: url(/img/svg/FOOTER_BUTTES.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+
   position: relative;
   width: 100%;
   margin-right: auto;

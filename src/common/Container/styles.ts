@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled("div")<any>`
+  // background: linear-gradient(121deg, rgba(152,245,246,1) 20%, rgba(255,255,255,0.5676864495798319) 100%);
+
   position: relative;
   // max-width: 100%;
   // margin-right: auto;
