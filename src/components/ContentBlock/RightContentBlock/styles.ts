@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const RightBlockContainer = styled("section")`
+  background-color: #597B73;
+
   position: relative;
   padding: 10rem 0 8rem;
 

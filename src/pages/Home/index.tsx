@@ -38,7 +38,7 @@ const Home = () => {
         button={MiddleBlockContent.button}
         backgroundImage="LANDING_BUTTE_2_01_Artboard_1.svg"
       />
-      {/* <ContentBlock
+      <ContentBlock
         type="left"
         title={ServicesContent.title}
         content={ServicesContent.text}
@@ -59,7 +59,7 @@ const Home = () => {
         content={AboutContent.text}
         icon="ANIMATED_PROGRAMMER.svg"
         id="about"
-      /> */}
+      />
       <Contact
         title={ContactContent.title}
         content={ContactContent.text}

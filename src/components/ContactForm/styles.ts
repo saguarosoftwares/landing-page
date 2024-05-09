@@ -16,6 +16,9 @@ export const ContactContainer = styled("div")`
 export const FormGroup = styled("form")`
   width: 100%;
   max-width: 520px;
+  input:focus, textarea:focus {
+    background-color: #F4DCDC;
+  }
 
   @media only screen and (max-width: 1045px) {
     max-width: 100%;
