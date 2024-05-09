@@ -13,6 +13,7 @@ export const HeaderSection = styled("header")`
 `;
 
 export const LogoContainer = styled(Link)`
+  padding-left: 2rem;
   display: flex;
 `;
 
