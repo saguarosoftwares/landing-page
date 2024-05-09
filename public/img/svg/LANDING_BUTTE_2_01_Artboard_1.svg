@@ -16,15 +16,41 @@
         /* Assume the center of the cog is at (300px, 150px) */
         transform-origin: 892px 207px; /* Adjust these values to the calculated center */
 	}
-	      @keyframes rotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }      
 
+	.st3 {
+		top: 250px;
+		transform: translateX(-30vw);
+		position: absolute;
+		animation: move 11s linear 1s infinite;
+		width: 150px;
+	}
+
+	@keyframes rotate {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}      
+
+	@-webkit-keyframes move {
+	from {
+		transform: translateX(-30vw);
+	}
+	to {
+		transform: translateX(100vw);
+	}
+	}
+
+	@-webkit-keyframes moveFirst {
+	from {
+		transform: translateX(50vw);
+	}
+	to {
+		transform: translateX(100vw);
+	}
+	}
 </style>
 <g>
 	<path class="st0" d="M519.4,641.2c-16.8,3.9-133.9,3.3-150.8,6.9c-11.3,2.5-38.9-16.2-43.5-30.6c-3.8-11.6-11.7-13.3-25.3-14.7

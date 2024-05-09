@@ -27,8 +27,10 @@ export const MiddleBlockSection = styled.section<MiddleBlockSectionProps>`
 
   @media screen and (max-width: 1900px) {
     // padding: 5.5rem 0 3rem;
-    background-position: center;
-    // background-position: bottom;
+    // background-position: center;
+    // background-size: var(--background-width) auto;
+
+    background-position: bottom;
 
     background-size: contain;
 
