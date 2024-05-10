@@ -12,7 +12,7 @@
 	.st6{
 		fill:#808080;
         stroke-width: 0px;
-        animation: rotate 10s linear infinite;
+        animation: rotate 20s linear infinite;
         /* Assume the center of the cog is at (300px, 150px) */
         transform-origin: 892px 207px; /* Adjust these values to the calculated center */
 	}
