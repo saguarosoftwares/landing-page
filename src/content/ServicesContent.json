@@ -1,6 +1,6 @@
 {
   "title": "Our Services",
-  "text": "We have a plethora of services, from Web App Development to Artificial knowledge! Here, we've highlighted some of our best services.",
+  "text": "We have a plethora of services, from Web App Development to Artificial Intelligence! Here, we've highlighted some of our best services.",
   "section": [
     {
       "title": "Custom Software Development",
@@ -13,7 +13,7 @@
       "icon": "notes.svg"
     },
     {
-      "title": "Tech. Consulting",
+      "title": "Tech Consulting",
       "content": "Empower your business with strategic tech guidance. Our consulting services offer tailored solutions, propelling you forward in the ever-evolving digital landscape.",
       "icon": "notes.svg"
     },

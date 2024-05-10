@@ -31,11 +31,11 @@ export const ServiceWrapper = styled("div")`
 `;
 
 export const MinTitle = styled("h6")`
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1rem;
   padding: 0.5rem 0;
   text-transform: uppercase;
-  color: #000;
+  color: #D39381;
   font-family: "Poppins Sans Regular", sans-serif;
 `;
 
