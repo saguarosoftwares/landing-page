@@ -37,6 +37,7 @@ const Home = () => {
         content={IntroContent.launchText}
         button={MiddleBlockContent.button}
         backgroundImage="LANDING_BUTTE.svg"
+        id="intro"
       />
       <ContentBlock
         type="left"
