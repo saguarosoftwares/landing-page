@@ -69,14 +69,16 @@ const Footer = ({ t }: any) => {
                 src="medium.svg"
               />
 
-              <a href="mailto:admin@saguarosaas.com?Subject=Inquiry%20about%20Services">
-                <img
-                  src="/img/svg/email-icon.svg"
-                  alt=""
-                  width="25px"
-                  height="25px"
-                />
-              </a>
+              <div style={{ marginRight: '100px' }}>
+                <a href="mailto:admin@saguarosaas.com?Subject=Inquiry%20about%20Services">
+                  <img
+                    src="/img/svg/email-icon.svg"
+                    alt=""
+                    width="25px"
+                    height="25px"
+                  />
+                </a>
+              </div>
             </FooterContainer>
           </Row>
         </Container>
