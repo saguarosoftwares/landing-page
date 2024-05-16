@@ -52,7 +52,7 @@ const Footer = ({ t }: any) => {
               </LogoContainer>
             </NavLink>
             <FooterContainer>
-            {/* <SocialLink
+            <SocialLink
                 href="https://github.com/Adrinlol/create-react-app-adrinlol"
                 src="github.svg"
               />
@@ -68,12 +68,15 @@ const Footer = ({ t }: any) => {
                 href="https://medium.com/@lashakakabadze/"
                 src="medium.svg"
               />
-              <a href="https://www.buymeacoffee.com/adrinlol">
+
+              <a href="mailto:admin@saguarosaas.com?Subject=Inquiry%20about%20Services">
                 <img
-                  src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=adrinlol&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"
-                  alt="Buy me a pizza"
+                  src="/img/svg/email-icon.svg"
+                  alt=""
+                  width="25px"
+                  height="25px"
                 />
-              </a> */}
+              </a>
             </FooterContainer>
           </Row>
         </Container>
