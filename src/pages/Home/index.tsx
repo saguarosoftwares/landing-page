@@ -31,16 +31,18 @@ const Home = () => {
         icon="saguaro_software_solutions.svg"
         id="intro"
       /> */}
-      <MiddleBlock
+      
+      {/* <MiddleBlock
         title={MiddleBlockContent.title}
         // content={MiddleBlockContent.text}
         content={IntroContent.launchText}
         button={MiddleBlockContent.button}
         backgroundImage="LANDING_BUTTE.svg"
         id="intro"
-      />
+      /> */}
+
       <ContentBlock
-        type="left"
+        type="center"
         title={ServicesContent.title}
         content={ServicesContent.text}
         section={ServicesContent.section}

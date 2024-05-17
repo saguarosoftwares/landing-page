@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
@@ -17,6 +17,8 @@ import {
 } from "./styles";
 
 const Header = ({ t }: any) => {
+  const [isFixed, setIsFixed] = useState(false);
+
   const [visible, setVisibility] = useState(false);
 
   const showDrawer = () => {
@@ -26,6 +28,31 @@ const Header = ({ t }: any) => {
   const onClose = () => {
     setVisibility(!visible);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const introElement = document.getElementById("intro");
+      if (introElement) {
+        const landingHeight = introElement.offsetHeight;
+        const scrollPosition = window.pageYOffset;
+  
+        // Check if the scroll position exceeds the height of the landing component
+        if (scrollPosition > landingHeight) {
+          setIsFixed(true);
+        } else {
+          setIsFixed(false);
+        }
+      } else {
+        console.warn("Element with id 'intro' not found.");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const MenuItem = () => {
     const scrollTo = (id: string) => {
@@ -38,20 +65,20 @@ const Header = ({ t }: any) => {
     return (
       <>
         <CustomNavLinkSmall onClick={() => scrollTo("services")}>
-          <Span>{t("Services")}</Span>
+          <Span>{t("SERVICES")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
-          <Span>{t("Mission")}</Span>
+          <Span>{t("MISSION")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={() => scrollTo("about")}>
-          <Span>{t("About")}</Span>
+          <Span>{t("ABOUT")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "180px" }}
           onClick={() => scrollTo("contact")}
         >
           <Span>
-            <Button>{t("Let's Talk!")}</Button>
+            <Button>{t("LET'S TALK!")}</Button>
           </Span>
         </CustomNavLinkSmall>
       </>
@@ -59,11 +86,11 @@ const Header = ({ t }: any) => {
   };
 
   return (
-    <HeaderSection>
+    <HeaderSection className={isFixed ? "fixed" : ""}>
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" width="250px" height="64px" />
+            <SvgIcon src="LOGO_MOBILE.svg" width="350px" height="80px" />
           </LogoContainer>
           <NotHidden>
             <MenuItem />

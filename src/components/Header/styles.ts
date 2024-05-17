@@ -3,17 +3,27 @@ import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
 
 export const HeaderSection = styled("header")`
+  // position: fixed; /* Set the position to fixed */
   // display: flex;
   padding: 1rem 0.5rem;
+  background-color: #597B73;
 
   .ant-row-space-between {
     align-items: center;
     text-align: center;
   }
+  /* Add styles for fixed position */
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
 `;
 
 export const LogoContainer = styled(Link)`
-  padding-left: 2rem;
+  // padding-left: 2rem;
   display: flex;
 `;
 
