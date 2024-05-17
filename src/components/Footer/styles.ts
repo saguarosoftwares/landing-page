@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const FooterSection = styled("footer")`
-  // background-color: #F4DCDC;
-  // background: rgb(241, 242, 243);
+// background-color: #F4DCDC;
+// background: rgb(241, 242, 243);
   padding: 2.5rem 0;
 `;
 
@@ -31,8 +31,7 @@ export const NavLink = styled(Link)`
 `;
 
 export const Extra = styled("section")`
-  // background-color: #F4DCDC;
-  background-color: rgb(89, 123, 115);
+background-color: #D39381;
   // background: rgb(241, 242, 243);
   // background-image: url(/img/svg/FOOTER_BUTTES.svg);
   background-size: cover;
