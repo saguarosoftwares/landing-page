@@ -16,30 +16,6 @@ const Home = () => {
   return (
     <Container>
       <ScrollToTop />
-      {/* <MiddleBlock
-        title={IntroContent.title}
-        content={IntroContent.launchText}
-        button={MiddleBlockContent.button}
-        backgroundImage="LANDING_BUTE.svg"
-      /> */}
-
-      {/* <ContentBlock
-        type="right"
-        title={IntroContent.title}
-        content={IntroContent.text}
-        button={IntroContent.button}
-        icon="saguaro_software_solutions.svg"
-        id="intro"
-      /> */}
-      
-      {/* <MiddleBlock
-        title={MiddleBlockContent.title}
-        // content={MiddleBlockContent.text}
-        content={IntroContent.launchText}
-        button={MiddleBlockContent.button}
-        backgroundImage="LANDING_BUTTE.svg"
-        id="intro"
-      /> */}
 
       <ContentBlock
         type="center"
