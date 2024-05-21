@@ -23,7 +23,7 @@ const CenterContentBlock = ({
   return (
     <LeftContentSection>
       {/* <Fade direction="left"> */}
-        <Row justify="space-between" align="middle" id={id}>
+        <Row /**justify="space-between"**/ align="middle" id={id}>
           {/* <Col lg={11} md={11} sm={12} xs={24}>
             <SvgIcon src={icon} width="100%" height="100%" />
           </Col> */}
@@ -32,7 +32,7 @@ const CenterContentBlock = ({
               <h6>{t(title)}</h6>
               {/* <Content>{t(content)}</Content> */}
               <ServiceWrapper>
-                <Row justify="space-between">
+                <Row /**justify="space-between"**/>
                   {typeof section === "object" &&
                     section.map((item: any, id: number) => {
                       return (

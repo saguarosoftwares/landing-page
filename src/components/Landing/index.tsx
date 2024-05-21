@@ -103,7 +103,9 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
 
 
 
-          if (/**sizeChange == 'grow' || sizeChange == 'shrink'**/ sunRect.bottom < parentRect.bottom ) {
+          //if (/**sizeChange == 'grow' || sizeChange == 'shrink'**/ sunRect.bottom < parentRect.bottom ) { // this is choppy since reduction of width make it fallback into growth
+          // if daguaro not at 0?
+          if (daguaroRect.top > 0 ) {
             
             const daguaroTopInViewport = daguaroRect.top - parentRect.top;
             const maxGrowthScrollY = daguaroTopInViewport; // Sun grows until it reaches the top of Daguaro
@@ -116,15 +118,8 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
 
             } 
 
+          // } else if (sunRect.bottom > parentRect.bottom) {
           } else {
-            // if (navbarElement) {
-            //   const navbarRect = navbarElement.getBoundingClientRect();
-
-            //   const navbarInViewPort = navbarRect.top - parentRect.top;
-            //   const maxGrowthScrollY = navbarInViewPort; // Sun grows until it reaches the top of Daguaro
-
-
-            // }
 
             if (navbarElement) {
               const navbarRect = navbarElement.getBoundingClientRect();
