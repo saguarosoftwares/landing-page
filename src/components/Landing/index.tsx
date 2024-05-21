@@ -32,6 +32,9 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
   const daguaroRef = useRef(null);
   const parentRef = useRef(null);
 
+  const [sizeChange, setSizeChange] = useState<'shrink' | 'grow'>('grow');
+
+
   const daguaroOriginalTopRef = useRef<number | null>(null); // Ref to store the original top position of DAGUARO
 
 
@@ -41,19 +44,22 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
   const [maxScrollY, setMaxScrollY] = useState(0); // State to track scroll position
 
   const [sunWidth, setSunWidth] = useState('10%');
+  const [daguaroWidth, setDaguaroWidth] = useState('8%');
+
 
 
 
   useEffect(() => {
     const handleScroll = debounce(() => {
+
       const offsetY = window.scrollY;
       window.requestAnimationFrame(() => {
         if (parentRef.current && sunRef.current && daguaroRef.current) {
           const sunElement = sunRef.current as HTMLElement;
           const parentElement = parentRef.current as HTMLElement;
           const daguaroElement = daguaroRef.current as HTMLElement;
-
           const navbarElement = document.querySelector("#navbar") as HTMLElement;
+
 
 
           const sunRect = sunElement.getBoundingClientRect();
@@ -78,51 +84,78 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
           // Update the position of DAGUARO
           if (daguaroOriginalTopRef.current === null) {
             daguaroOriginalTopRef.current = daguaroRect.top - parentRect.top; // Store the original top position of DAGUARO
-            // console.log("daguaroOriginalTopRef: ", daguaroOriginalTopRef)
-            // console.log("offsetY: ", offsetY)
 
           }
-          if (offsetY >= daguaroOriginalTopRef.current) {
+          if (offsetY > daguaroOriginalTopRef.current) {
 
             setDaguaroPosition('fixed');
             // daguaroElement.style.display="none"
-            // console.log(sunElement)
-            const parentOfFilledSun = document.getElementById('FILLED_SUN') as HTMLElement;
-            // console.log(parentOfFilledSun)
-            if (parentOfFilledSun) {
-              // parentOfFilledSun.style.display="none"
-            }
+          } 
+          
+          else if (offsetY <= daguaroOriginalTopRef.current) {
+
+            setDaguaroPosition('absolute');
+            // daguaroElement.style.display="none"
           } else {
-            // setDaguaroPosition('fixed');
+            setSizeChange('shrink')
+
           }
-          const daguaroTopInViewport = daguaroRect.top - parentRect.top;
-          const maxGrowthScrollY = daguaroTopInViewport; // Sun grows until it reaches the top of Daguaro
-          const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
-          const newSunWidth = 10 + (25 - 10) * relativeScrollY;
-          setSunWidth(`${newSunWidth}%`);
 
 
-          // if (daguaroRect.top <= 0) {
-          //   setDaguaroPosition('fixed')
-          // }
-          if (navbarElement) {
-            const navbarRect = navbarElement.getBoundingClientRect();
-            const navbarCenterY = navbarRect.top + navbarRect.height / 2;
-            const sunCenterY = sunRect.top + sunRect.height / 2;
-            // if (sunCenterY >= navbarCenterY && sunPosition !== 'centered') {
-            //   setSunTop(navbarCenterY - sunRect.height / 2);
-            //   setSunPosition('centered');
-            // } else if (offsetY < scrollY && sunPosition === 'centered') {
-            //   setSunPosition('fixed');
+
+          if (/**sizeChange == 'grow' || sizeChange == 'shrink'**/ sunRect.bottom < parentRect.bottom ) {
+            
+            const daguaroTopInViewport = daguaroRect.top - parentRect.top;
+            const maxGrowthScrollY = daguaroTopInViewport; // Sun grows until it reaches the top of Daguaro
+
+            const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
+            const newSunWidth = 10 + (25 - 10) * relativeScrollY;
+            setSunWidth(`${newSunWidth}%`);
+            if (sunWidth == `25%`){
+              setSizeChange('shrink')
+
+            } 
+
+          } else {
+            // if (navbarElement) {
+            //   const navbarRect = navbarElement.getBoundingClientRect();
+
+            //   const navbarInViewPort = navbarRect.top - parentRect.top;
+            //   const maxGrowthScrollY = navbarInViewPort; // Sun grows until it reaches the top of Daguaro
+
+
             // }
 
-            if (sunCenterY >= navbarCenterY && !isCentered) {
-              setSunTop(navbarCenterY - sunRect.height / 2);
-              setIsCentered(true);
-            } else if (offsetY < scrollY && isCentered) {
-              setIsCentered(false);
+            if (navbarElement) {
+              const navbarRect = navbarElement.getBoundingClientRect();
+              const navbarInViewPort = navbarRect.top - parentRect.top;
+              const maxGrowthScrollY = navbarInViewPort; // Sun shrinks until it reaches the navbar
+              const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
+              const newSunWidth = 25 - (15 * relativeScrollY); // Shrink the sun from 25% to 10%
+              setSunWidth(`${newSunWidth}%`);
+
+              // Calculate daguaro width
+              const newDaguaroWidth = 8 - (5 * relativeScrollY); // Shrink the daguaro from 8% to 3%
+              setDaguaroWidth(`${newDaguaroWidth}%`);
             }
 
+          }
+
+
+          if (navbarElement) {
+            const navbarRect = navbarElement.getBoundingClientRect();
+
+            const navbarCenterY = navbarRect.top + navbarRect.height / 2;
+            const sunCenterY = sunRect.top + sunRect.height / 2;
+            // console.log(sunCenterY)
+
+            if (sunCenterY <= navbarCenterY && sizeChange == 'shrink') {
+              // const relativeScrollY = Math.min(Math.max((navbarCenterY - sunCenterY) / maxGrowthScrollY, 0), 1);
+              // const newSunWidth = 25 - (15 * relativeScrollY); // Scale down from 25% to 10%
+              // setSunWidth(`${newSunWidth}%`);
+            }
+  
+  
           }
 
 
@@ -134,10 +167,13 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
         let daguaroElement = (document.querySelector("#DAGUARO")) as HTMLElement;
 
         if (daguaroElement) {
-          //console.log(daguaroElement)
-          //daguaroElement.style.display = 'none'
+          // daguaroElement.style.display = 'none'
 
         }
+      }
+
+      if (daguaroPosition == 'absolute'){
+        setDaguaroWidth('8%')
       }
     }, 0);
 
@@ -158,8 +194,6 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
       <div
         ref={sunRef}
         style={{
-          // position: sunPosition,
-          // bottom: sunPosition === 'absolute' ? 0 : 'auto', // Keep bottom at 0 when position is absolute
           position: isCentered ? 'fixed' : sunPosition,
           top: isCentered ? `${sunTop}px` : 'auto',
           bottom: !isCentered && sunPosition === 'absolute' ? 0 : 'auto',
@@ -177,9 +211,6 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
       <div
         ref={daguaroRef}
         style={{
-          // position: 'absolute',   
-          // bottom:0, 
-
           position: daguaroPosition,
           bottom: daguaroPosition === 'absolute' ? 0 : 'auto', // Keep bottom at 0 when position is absolute
 
@@ -190,7 +221,7 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
           justifyContent: "center"
         }}
       >
-        <ReactSVG id="DAGUARO" src="/img/svg/daguaro.svg" style={{ width: '8%', height: '100%', zIndex: 2 }} />
+        <ReactSVG id="DAGUARO" src="/img/svg/daguaro.svg" style={{ width: `${daguaroWidth}`, height: '100%', zIndex: 2 }} />
       </div>
 
 

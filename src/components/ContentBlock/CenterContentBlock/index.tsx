@@ -1,4 +1,4 @@
-import { Row, Col } from "antd";
+import { Row, Col, Card } from "antd";
 import { withTranslation } from "react-i18next";
 import { SvgIcon } from "../../../common/SvgIcon";
 import { ContentBlockProps } from "../types";
@@ -29,7 +29,7 @@ const CenterContentBlock = ({
           </Col> */}
           {/* <Col lg={11} md={11} sm={11} xs={24}> */}
             <ContentWrapper>
-              {/* <h6>{t(title)}</h6> */}
+              <h6>{t(title)}</h6>
               {/* <Content>{t(content)}</Content> */}
               <ServiceWrapper>
                 <Row justify="space-between">
@@ -37,9 +37,14 @@ const CenterContentBlock = ({
                     section.map((item: any, id: number) => {
                       return (
                         <Col key={id} span={11}>
-                          <SvgIcon src={item.icon} width="60px" height="60px" />
-                          <MinTitle>{t(item.title)}</MinTitle>
-                          <MinPara>{t(item.content)}</MinPara>
+                          <Card
+                            style={{ borderRadius: 10, backgroundColor: "transparent" }} // Rounded edges
+                            hoverable // Add hover effect
+                          >
+                            <SvgIcon src={item.icon} width="60px" height="60px" />
+                            <MinTitle>{t(item.title)}</MinTitle>
+                            <MinPara>{t(item.content)}</MinPara>
+                          </Card>
                         </Col>
                       );
                     })}
