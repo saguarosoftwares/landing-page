@@ -129,8 +129,8 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
               const newSunWidth = 25 - (15 * relativeScrollY); // Shrink the sun from 25% to 10%
               setSunWidth(`${newSunWidth}%`);
 
-              // Calculate daguaro width
-              const newDaguaroWidth = 8 - (5 * relativeScrollY); // Shrink the daguaro from 8% to 3%
+              // Calculate daguaro width //#TODO bug ... uneasy transition when daguaro hits top of sun (daguroRect.top -> 0px)
+              const newDaguaroWidth = 8 - (5 * relativeScrollY); // Shrink the daguaro from 8% to 3% 
               setDaguaroWidth(`${newDaguaroWidth}%`);
             }
 
@@ -182,7 +182,7 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
 
   return (
 
-    <MiddleBlockSection id={id} style={{ position: 'relative' , bottom:0}} ref={parentRef}>
+    <MiddleBlockSection id={id} style={{ position: 'relative' , bottom:0, zIndex: 2}} ref={parentRef}>
 
       <ReactSVG src="/img/svg/LANDING_BUTTE_2.svg" style={{ width: '100%', height: '100%', bottom: 0, zIndex: 1 }} />
 
@@ -197,7 +197,7 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
           height: 'auto',
           zIndex: 2,
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <ReactSVG id="SUN" src="/img/svg/SUN.svg" style={{ /**width: "25%"**/ width: `${sunWidth}`, height: '100%', zIndex: 2 }} />

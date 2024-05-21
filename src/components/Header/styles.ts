@@ -7,6 +7,7 @@ export const HeaderSection = styled("header")`
   // display: flex;
   padding: 1rem 0.5rem;
   background-color: #597B73;
+  z-index=1;
 
   .ant-row-space-between {
     align-items: center;
@@ -18,7 +19,7 @@ export const HeaderSection = styled("header")`
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1;
   }
 `;
 
