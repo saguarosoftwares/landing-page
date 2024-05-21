@@ -86,7 +86,7 @@ const Header = ({ t }: any) => {
   };
 
   return (
-    <HeaderSection className={isFixed ? "fixed" : ""}>
+    <HeaderSection id={"navbar"} className={isFixed ? "fixed" : ""}>
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">

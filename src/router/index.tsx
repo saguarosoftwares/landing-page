@@ -14,7 +14,7 @@ const Router = () => {
   return (
     <Suspense fallback={null}>
       <Styles />
-      <Landing
+      <Landing 
         title={MiddleBlockContent.title}
         // content={MiddleBlockContent.text}
         content={IntroContent.launchText}
@@ -23,7 +23,7 @@ const Router = () => {
         id="intro"
         t="1"
       />
-      <Header />
+      <Header /**style={{ zIndex: 1 }}**/  />
       <Switch>
         {routes.map((routeItem) => {
           return (

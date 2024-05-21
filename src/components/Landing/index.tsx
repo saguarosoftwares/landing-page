@@ -25,6 +25,7 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
   const [sunPosition, setSunPosition] = useState<'fixed' | 'absolute'>('fixed');
   const [daguaroPosition, setDaguaroPosition] = useState<'fixed' | 'absolute'>('absolute');
 
+  const [isCentered, setIsCentered] = useState(false);
 
   // const svgRef = useRef<HTMLDivElement>(null);
   const sunRef = useRef(null);
@@ -39,6 +40,8 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
   const [scrollY, setScrollY] = useState(0); // State to track scroll position
   const [maxScrollY, setMaxScrollY] = useState(0); // State to track scroll position
 
+  const [sunWidth, setSunWidth] = useState('10%');
+
 
 
   useEffect(() => {
@@ -49,6 +52,8 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
           const sunElement = sunRef.current as HTMLElement;
           const parentElement = parentRef.current as HTMLElement;
           const daguaroElement = daguaroRef.current as HTMLElement;
+
+          const navbarElement = document.querySelector("#navbar") as HTMLElement;
 
 
           const sunRect = sunElement.getBoundingClientRect();
@@ -90,11 +95,35 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
           } else {
             // setDaguaroPosition('fixed');
           }
+          const daguaroTopInViewport = daguaroRect.top - parentRect.top;
+          const maxGrowthScrollY = daguaroTopInViewport; // Sun grows until it reaches the top of Daguaro
+          const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
+          const newSunWidth = 10 + (25 - 10) * relativeScrollY;
+          setSunWidth(`${newSunWidth}%`);
 
 
           // if (daguaroRect.top <= 0) {
           //   setDaguaroPosition('fixed')
           // }
+          if (navbarElement) {
+            const navbarRect = navbarElement.getBoundingClientRect();
+            const navbarCenterY = navbarRect.top + navbarRect.height / 2;
+            const sunCenterY = sunRect.top + sunRect.height / 2;
+            // if (sunCenterY >= navbarCenterY && sunPosition !== 'centered') {
+            //   setSunTop(navbarCenterY - sunRect.height / 2);
+            //   setSunPosition('centered');
+            // } else if (offsetY < scrollY && sunPosition === 'centered') {
+            //   setSunPosition('fixed');
+            // }
+
+            if (sunCenterY >= navbarCenterY && !isCentered) {
+              setSunTop(navbarCenterY - sunRect.height / 2);
+              setIsCentered(true);
+            } else if (offsetY < scrollY && isCentered) {
+              setIsCentered(false);
+            }
+
+          }
 
 
         }
@@ -105,8 +134,8 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
         let daguaroElement = (document.querySelector("#DAGUARO")) as HTMLElement;
 
         if (daguaroElement) {
-          console.log(daguaroElement)
-          daguaroElement.style.display = 'none'
+          //console.log(daguaroElement)
+          //daguaroElement.style.display = 'none'
 
         }
       }
@@ -129,8 +158,12 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
       <div
         ref={sunRef}
         style={{
-          position: sunPosition,
-          bottom: sunPosition === 'absolute' ? 0 : 'auto', // Keep bottom at 0 when position is absolute
+          // position: sunPosition,
+          // bottom: sunPosition === 'absolute' ? 0 : 'auto', // Keep bottom at 0 when position is absolute
+          position: isCentered ? 'fixed' : sunPosition,
+          top: isCentered ? `${sunTop}px` : 'auto',
+          bottom: !isCentered && sunPosition === 'absolute' ? 0 : 'auto',
+
           width: '100%',
           height: 'auto',
           zIndex: 2,
@@ -138,7 +171,7 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
           justifyContent: "center"
         }}
       >
-        <ReactSVG id="SUN" src="/img/svg/SUN.svg" style={{ width: "25%", height: '100%', zIndex: 2 }} />
+        <ReactSVG id="SUN" src="/img/svg/SUN.svg" style={{ /**width: "25%"**/ width: `${sunWidth}`, height: '100%', zIndex: 2 }} />
       </div>
 
       <div
