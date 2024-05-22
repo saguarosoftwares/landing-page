@@ -14,9 +14,11 @@ import {
   Label,
   Outline,
   Span,
+  SvgContainer
 } from "./styles";
+import { ReactSVG } from 'react-svg';
 
-const Header = ({ t }: any) => {
+const Header = ({ t, svgInNavbar }: any) => {
   const [isFixed, setIsFixed] = useState(false);
 
   const [visible, setVisibility] = useState(false);
@@ -35,7 +37,7 @@ const Header = ({ t }: any) => {
       if (introElement) {
         const landingHeight = introElement.offsetHeight;
         const scrollPosition = window.pageYOffset;
-  
+
         // Check if the scroll position exceeds the height of the landing component
         if (scrollPosition > landingHeight) {
           setIsFixed(true);
@@ -88,16 +90,26 @@ const Header = ({ t }: any) => {
   return (
     <HeaderSection id={"navbar"} className={isFixed ? "fixed" : ""}>
       <Container>
-        <Row justify="space-between">
+        <Row justify="space-between" align="middle">
           <LogoContainer to="/" aria-label="homepage">
             <SvgIcon src="LOGO_MOBILE.svg" width="350px" height="80px" />
           </LogoContainer>
-          <NotHidden>
+
+          {/* <NotHidden>
             <MenuItem />
           </NotHidden>
           <Burger onClick={showDrawer}>
             <Outline />
-          </Burger>
+          </Burger> */}
+
+          <SvgContainer>
+            {svgInNavbar && (
+              <>
+                <ReactSVG id="SUN" src="/img/svg/SUN.svg" className="sun-svg" />
+                <ReactSVG id="DAGUARO" src="/img/svg/daguaro.svg" className="daguaro-svg" />
+              </>
+            )}
+          </SvgContainer>
         </Row>
         <Drawer closable={false} visible={visible} onClose={onClose}>
           <Col style={{ marginBottom: "2.5rem" }}>

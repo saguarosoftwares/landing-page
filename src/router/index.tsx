@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -11,6 +11,8 @@ import IntroContent from "../content/IntroContent.json";
 const Landing = lazy(() => import("../components/Landing"));
 
 const Router = () => {
+  const [svgInNavbar, setSvgInNavbar] = useState(false);
+
   return (
     <Suspense fallback={null}>
       <Styles />
@@ -22,8 +24,9 @@ const Router = () => {
         backgroundImage="LANDING_BUTTE_2.svg"
         id="intro"
         t="1"
+        setSvgInNavbar={setSvgInNavbar}
       />
-      <Header /**style={{ zIndex: 1 }}**/  />
+      <Header svgInNavbar={svgInNavbar} />
       <Switch>
         {routes.map((routeItem) => {
           return (

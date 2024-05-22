@@ -17,7 +17,7 @@ export const HeaderSection = styled("header")`
   &.fixed {
     position: fixed;
     top: 0;
-    left: 0;
+    // left: 0;
     width: 100%;
     z-index: 1;
   }
@@ -26,6 +26,8 @@ export const HeaderSection = styled("header")`
 export const LogoContainer = styled(Link)`
   // padding-left: 2rem;
   display: flex;
+  // align-items: center;
+  // text-decoration: none;
 `;
 
 export const NavLink = styled("div")`
@@ -115,3 +117,28 @@ export const Span = styled("span")`
     // text-decoration: #F4DCDC wavy underline;
   }
 `;
+
+export const SvgContainer = styled.div`
+  background-color: #597B73;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  .sun-svg {
+    width: 10%;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .daguaro-svg {
+    width: 3%;
+    position: relative;
+    z-index: 2;
+  }
+`;
+
+
+
+

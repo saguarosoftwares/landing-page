@@ -19,9 +19,10 @@ interface MiddleBlockProps {
   backgroundImage?: string;  // Optional background image URL
   t: any;
   id: string;
+  setSvgInNavbar: (inNavbar: boolean) => void;
 }
 
-const LandingBlock = ({ title, content, button, backgroundImage, t, id }: MiddleBlockProps) => {
+const LandingBlock = ({ title, content, button, backgroundImage, t, id, setSvgInNavbar }: MiddleBlockProps) => {
   const [sunPosition, setSunPosition] = useState<'fixed' | 'absolute'>('fixed');
   const [daguaroPosition, setDaguaroPosition] = useState<'fixed' | 'absolute'>('absolute');
 
@@ -73,8 +74,7 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
 
           // If the bottom of the sun is going to be below the bottom of the parent, adjust scrollY
           if (offsetY > maxScrollY) {
-            // setScrollY(maxScrollY);
-            // setSunPosition('absolute');
+
 
           } else {
             setScrollY(offsetY);
@@ -105,7 +105,7 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
 
           //if (/**sizeChange == 'grow' || sizeChange == 'shrink'**/ sunRect.bottom < parentRect.bottom ) { // this is choppy since reduction of width make it fallback into growth
           // if daguaro not at 0?
-          if (daguaroRect.top > 0 ) {
+          if (daguaroRect.top > 0 && sunElement.style.display!="none" ) { //TODO make sure to only play with widths when 
             
             const daguaroTopInViewport = daguaroRect.top - parentRect.top;
             const maxGrowthScrollY = daguaroTopInViewport; // Sun grows until it reaches the top of Daguaro
@@ -121,8 +121,11 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
           // } else if (sunRect.bottom > parentRect.bottom) {
           } else {
 
-            if (navbarElement) {
+            if (navbarElement && sunElement.style.display!="none" ) {
+
               const navbarRect = navbarElement.getBoundingClientRect();
+
+
               const navbarInViewPort = navbarRect.top - parentRect.top;
               const maxGrowthScrollY = navbarInViewPort; // Sun shrinks until it reaches the navbar
               const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
@@ -132,6 +135,12 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
               // Calculate daguaro width //#TODO bug ... uneasy transition when daguaro hits top of sun (daguroRect.top -> 0px)
               const newDaguaroWidth = 8 - (5 * relativeScrollY); // Shrink the daguaro from 8% to 3% 
               setDaguaroWidth(`${newDaguaroWidth}%`);
+
+
+              let navbarHeight = navbarRect.height;
+              const sunWidth = `${(navbarHeight * 1.1) / navbarHeight * 100}%`;
+              const daguaroWidth = `${(navbarHeight * 0.8) / navbarHeight * 100}%`;
+      
             }
 
           }
@@ -140,8 +149,23 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id }: Middle
           if (navbarElement) {
             const navbarRect = navbarElement.getBoundingClientRect();
 
+            if (sunRect.bottom <= navbarRect.bottom && sunRect.top >= navbarRect.top &&
+              daguaroRect.bottom <= navbarRect.bottom && daguaroRect.top >= navbarRect.top) {  //#TODO this may never hit... (w/ some resolutions the logo ends up being larer)
+              setSvgInNavbar(true);
+              daguaroElement.style.display =  'none';
+              sunElement.style.display =  'none';
+
+            } else {
+              setSvgInNavbar(false);
+              daguaroElement.style.display = 'flex';
+              sunElement.style.display = 'flex';
+            }
+
             const navbarCenterY = navbarRect.top + navbarRect.height / 2;
             const sunCenterY = sunRect.top + sunRect.height / 2;
+
+
+            
             // console.log(sunCenterY)
 
             if (sunCenterY <= navbarCenterY && sizeChange == 'shrink') {
