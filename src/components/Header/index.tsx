@@ -95,12 +95,12 @@ const Header = ({ t, svgInNavbar }: any) => {
             <SvgIcon src="LOGO_MOBILE.svg" width="350px" height="80px" />
           </LogoContainer>
 
-          {/* <NotHidden>
+          <NotHidden>
             <MenuItem />
           </NotHidden>
           <Burger onClick={showDrawer}>
             <Outline />
-          </Burger> */}
+          </Burger>
 
           <SvgContainer>
             {svgInNavbar && (
