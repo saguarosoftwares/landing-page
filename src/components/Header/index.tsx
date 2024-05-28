@@ -95,6 +95,11 @@ const Header = ({ t, svgInNavbar }: any) => {
             <SvgIcon src="LOGO_MOBILE.svg" width="350px" height="80px" />
           </LogoContainer>
 
+          {svgInNavbar && (
+          <SvgContainer>
+            <ReactSVG id="SUN" src="/img/svg/LOGO_ICON.svg" className="sun-svg" style={{height:"inherit"}} />
+          </SvgContainer> ) }
+
           <NotHidden>
             <MenuItem />
           </NotHidden>
@@ -103,12 +108,14 @@ const Header = ({ t, svgInNavbar }: any) => {
           </Burger>
 
           <SvgContainer>
-            {svgInNavbar && (
+            {/* <ReactSVG id="SUN" src="/img/svg/LOGO_ICON.svg" className="sun-svg" style={{height:"100%"}} /> */}
+
+            {/* {svgInNavbar && (
               <>
                 <ReactSVG id="SUN" src="/img/svg/SUN.svg" className="sun-svg" />
                 <ReactSVG id="DAGUARO" src="/img/svg/daguaro.svg" className="daguaro-svg" />
               </>
-            )}
+            )} */}
           </SvgContainer>
         </Row>
         <Drawer closable={false} visible={visible} onClose={onClose}>

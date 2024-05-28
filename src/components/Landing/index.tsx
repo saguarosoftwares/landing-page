@@ -20,10 +20,36 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id, setSvgIn
   const daguaroRef = useRef(null);
   const parentRef = useRef(null);
 
-  const daguaroOriginalTopRef = useRef<number | null>(null);
+  // const daguaroOriginalTopRef = useRef<number | null>(null);
+  const daguaroOriginalHeightRef = useRef<number | null>(null);
+
 
   const [sunWidth, setSunWidth] = useState('10%');
   const [daguaroWidth, setDaguaroWidth] = useState('8%');
+
+
+  useEffect(() => {
+    if (daguaroRef.current) {
+      const daguaroElement = daguaroRef.current as HTMLElement;
+
+      // Use ResizeObserver to handle dynamic content changes
+      const resizeObserver = new ResizeObserver(() => {
+        if ( daguaroElement.getBoundingClientRect().height != 0) {
+          daguaroOriginalHeightRef.current = daguaroElement.getBoundingClientRect().height;
+          console.log('Daguaro height:', daguaroOriginalHeightRef.current);
+        }
+
+      });
+
+      // Observe the daguaro element
+      resizeObserver.observe(daguaroElement);
+
+      // Cleanup observer on component unmount
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = debounce(() => {
@@ -41,38 +67,54 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id, setSvgIn
           const parentRect = parentElement.getBoundingClientRect();
 
 
-          if (daguaroOriginalTopRef.current === null) {
-            daguaroOriginalTopRef.current = daguaroRect.top - parentRect.top;
-          }
+          // if (daguaroOriginalTopRef.current === null) {
+          //   console.log("OVERRIDE")
+          //   daguaroOriginalTopRef.current = daguaroRect.top - parentRect.top;  // the original distance from the top of screen (parent) to the top of daguaro ... not always the same since the calculation is made upon first scroll entry (can vary in speed, which will presumably cause value to vary)
+          // }
 
-          if (offsetY > daguaroOriginalTopRef.current) {
-            setDaguaroPosition('fixed');
-          } else {
-            setDaguaroPosition('absolute');
-          }
+          //TODO move daguaro
+          // if (offsetY > daguaroOriginalTopRef.current) {
+          //   setDaguaroPosition('fixed');
+          // } else {
+          //   setDaguaroPosition('absolute');
+          // }
 
           if (daguaroRect.top > 0 && sunElement.style.display !== "none") {
             const maxGrowthScrollY = daguaroRect.top - parentRect.top;
             const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
-            const newSunWidth = 10 + (25 - 10) * relativeScrollY;
-            setSunWidth(`${newSunWidth}%`);
+            // const newSunWidth = 10 + (25 - 10) * relativeScrollY;
+            // setSunWidth(`${newSunWidth}%`);
 
-          } else if (navbarElement && sunElement.style.display !== "none") {
+            // Calculate the new width based on the height of daguaro
+            if (daguaroOriginalHeightRef.current) {
+              const newSunWidth = (daguaroOriginalHeightRef.current * 1.10) * relativeScrollY;
+              setSunWidth(`${newSunWidth}px`);
+
+            }
+
+          } 
+          
+          
+          //TODO maker smaller block
+          else if (daguaroRect.top <= 0 && navbarElement && sunElement.style.display !== "none") {
             const navbarRect = navbarElement.getBoundingClientRect();
             const maxGrowthScrollY = navbarRect.top - parentRect.top;
-            const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
-            const newSunWidth = 25 - (15 * relativeScrollY);
-            setSunWidth(`${newSunWidth}%`);
-            const newDaguaroWidth = 8 - (5 * relativeScrollY);
-            setDaguaroWidth(`${newDaguaroWidth}%`);
+            // const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
+            // const newSunWidth = 25 - (15 * relativeScrollY);
+            // setSunWidth(`${newSunWidth}%`);
+
+            // const newDaguaroWidth = 8 - (5 * relativeScrollY);
+            // setDaguaroWidth(`${newDaguaroWidth}%`);
           }
 
+          //TODO set in navbar block
           if (navbarElement) {
             const navbarRect = navbarElement.getBoundingClientRect();
 
             if (
-              sunRect.bottom <= navbarRect.bottom && sunRect.top >= navbarRect.top &&
-              daguaroRect.bottom <= navbarRect.bottom && daguaroRect.top >= navbarRect.top
+              // sunRect.bottom <= navbarRect.bottom && sunRect.top >= navbarRect.top &&
+              // daguaroRect.bottom <= navbarRect.bottom && daguaroRect.top >= navbarRect.top
+              navbarRect && navbarRect.top <= 0
             ) {
               setSvgInNavbar(true);
               daguaroElement.style.display = 'none';
