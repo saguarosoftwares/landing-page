@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 export const RightBlockContainer = styled("section")`
+  background-color: #597B73;
+  display: flex;              // Enables flexbox
+  justify-content: center;    // Horizontally center the content
+  align-items: center;        // Vertically center the content
+  flex-direction: column;     // Stack children vertically
+
   position: relative;
   padding: 10rem 0 8rem;
 

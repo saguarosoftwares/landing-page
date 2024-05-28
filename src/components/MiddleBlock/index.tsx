@@ -11,9 +11,10 @@ interface MiddleBlockProps {
   button: string;
   backgroundImage?: string;  // Optional background image URL
   t: any;
+  id: string;
 }
 
-const MiddleBlock = ({ title, content, button, backgroundImage, t }: MiddleBlockProps) => {
+const MiddleBlock = ({ title, content, button, backgroundImage, t, id }: MiddleBlockProps) => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id) as HTMLDivElement;
     element.scrollIntoView({
@@ -24,19 +25,19 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t }: MiddleBlock
   return (
     <MiddleBlockSection backgroundImage={backgroundImage}>
       <Slide direction="up">
-        <Row justify="center" align="middle">
+        <Row justify="center" align="middle" id={id}>
           <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
-              <h6>{t(title)}</h6>
+              {/* <h6>{t(title)}</h6> */}
               {/* Iterate through the list of strings in the content prop */}
-              {content.map((paragraph, index) => (
+              {/* {content.map((paragraph, index) => (
                 <Content key={index}>{t(paragraph)}</Content>
-              ))}
-              {button && (
+              ))} */}
+              {/* {button && (
                 <Button name="submit" onClick={() => scrollTo("contact")}>
                   {t(button)}
                 </Button>
-              )}
+              )} */}
             </Col>
           </ContentWrapper>
         </Row>

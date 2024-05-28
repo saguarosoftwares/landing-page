@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 export const LeftContentSection = styled("section")`
+  background-color: #597B73;
+  display: flex;              // Enables flexbox
+  justify-content: center;    // Horizontally center the content
+  align-items: center;        // Vertically center the content
+  flex-direction: column;     // Stack children vertically
+
   position: relative;
   padding: 10rem 0 8rem;
 
@@ -29,11 +35,11 @@ export const ServiceWrapper = styled("div")`
 `;
 
 export const MinTitle = styled("h6")`
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1rem;
   padding: 0.5rem 0;
   text-transform: uppercase;
-  color: #000;
+  color: #D39381;
   font-family: "Poppins Sans Regular", sans-serif;
 `;
 

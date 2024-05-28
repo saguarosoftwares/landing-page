@@ -2,14 +2,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const FooterSection = styled("footer")`
-  // background: rgb(241, 242, 243);
+// background-color: #F4DCDC;
+// background: rgb(241, 242, 243);
   padding: 2.5rem 0;
 `;
 
 export const Title = styled("h4")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #000000;
+  color: #D39381;
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;
@@ -30,11 +31,19 @@ export const NavLink = styled(Link)`
 `;
 
 export const Extra = styled("section")`
+background-color: #D39381;
   // background: rgb(241, 242, 243);
+  // background-image: url(/img/svg/FOOTER_BUTTES.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+
   position: relative;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+  // padding-left: 2rem;
+
   padding-bottom: 2rem;
 `;
 
@@ -62,23 +71,23 @@ export const Large = styled(Link)<any>`
   max-width: max-content;
 
   &:hover {
-    color: rgb(255, 130, 92);
+    color: #F4DCDC;
     text-underline-position: under;
-    text-decoration: rgb(255, 130, 92) wavy underline;
+    text-decoration: #F4DCDC wavy underline;
   }
 `;
 
 export const Chat = styled("p")`
-  color: #000000;
+  color: #D39381;
   max-width: fit-content;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #D39381;
   cursor: pointer;
   margin-top: 1rem;
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    border-bottom: 1px solid rgb(255, 130, 92);
-    color: rgb(255, 130, 92);
+    border-bottom: 1px solid #F4DCDC;
+    color: #F4DCDC;
   }
 `;
 
@@ -121,7 +130,7 @@ export const FooterContainer = styled("div")`
     height: 25px;
 
     &:hover {
-      fill: rgb(255, 130, 92);
+      fill: #F4DCDC;
     }
   }
 `;
@@ -129,7 +138,7 @@ export const FooterContainer = styled("div")`
 export const Language = styled("h4")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #148952;
+  color: #FFFFFF;
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;
@@ -139,10 +148,10 @@ export const Language = styled("h4")`
 export const Label = styled("label")`
   font-size: 22px;
   text-transform: capitalize;
-  color: #000000;
+  color: #D39381;
   display: block;
   margin-bottom: 2rem;
-  font-family: "Poppins Sans Bold", serif;
+  font-family: "Poppins Sans SemiBold", serif;
 
   @media screen and (max-width: 414px) {
     padding: 1.5rem 0;
