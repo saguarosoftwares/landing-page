@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
@@ -14,7 +14,8 @@ import {
   Label,
   Outline,
   Span,
-  SvgContainer
+  SvgContainer,
+  RowContainer
 } from "./styles";
 import { ReactSVG } from 'react-svg';
 
@@ -22,6 +23,10 @@ const Header = ({ t, svgInNavbar }: any) => {
   const [isFixed, setIsFixed] = useState(false);
 
   const [visible, setVisibility] = useState(false);
+
+  const navbarRef = useRef<HTMLDivElement | null>(null);
+
+  const svgHeight = navbarRef.current?.getBoundingClientRect().height;
 
   const showDrawer = () => {
     setVisibility(!visible);
@@ -34,7 +39,7 @@ const Header = ({ t, svgInNavbar }: any) => {
   useEffect(() => {
     const handleScroll = () => {
       const introElement = document.getElementById("intro");
-      if (introElement) {
+      if (introElement && !svgInNavbar) {
         const landingHeight = introElement.offsetHeight;
         const scrollPosition = window.pageYOffset;
 
@@ -69,12 +74,12 @@ const Header = ({ t, svgInNavbar }: any) => {
         <CustomNavLinkSmall onClick={() => scrollTo("services")}>
           <Span>{t("SERVICES")}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
+        {/* <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
           <Span>{t("MISSION")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={() => scrollTo("about")}>
           <Span>{t("ABOUT")}</Span>
-        </CustomNavLinkSmall>
+        </CustomNavLinkSmall> */}
         <CustomNavLinkSmall
           style={{ width: "180px" }}
           onClick={() => scrollTo("contact")}
@@ -87,37 +92,51 @@ const Header = ({ t, svgInNavbar }: any) => {
     );
   };
 
+
+
+
   return (
-    <HeaderSection id={"navbar"} className={isFixed ? "fixed" : ""}>
+    <HeaderSection id={"navbar"} className={isFixed ? "fixed" : ""} ref={navbarRef}>
       <Container>
-        <Row justify="space-between" align="middle">
-          <LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="LOGO_MOBILE.svg" width="350px" height="80px" />
+        <RowContainer /**justify="space-between" align="middle"*/>
+
+          <LogoContainer to="/" aria-label="homepage" style={{ width: '33%' }}>
+            <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" />
           </LogoContainer>
 
-          {svgInNavbar && (
-          <SvgContainer>
-            <ReactSVG id="SUN" src="/img/svg/LOGO_ICON.svg" className="sun-svg" style={{height:"inherit"}} />
-          </SvgContainer> ) }
+          <SvgContainer /**style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}*/>
+            {/**svgInNavbar*/ isFixed ? (
+              <ReactSVG
+                id="LOGO_ICON"
+                src="/img/svg/LOGO_ICON.svg"
+                className="sun-svg"
+                // style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}
+                style={{ width: '80px', height:"auto" }}
 
-          <NotHidden>
-            <MenuItem />
+              />
+            ) : (
+              <div
+                style={{
+                  width: svgHeight ? `${svgHeight}px` : '10%',
+                  height: '100%',  // Adjust height as needed
+                  backgroundColor: 'transparent' // Set to 'transparent' or the color of the navbar
+                }}
+              />
+            )}
+
+          </SvgContainer>
+
+
+          <NotHidden style={{ width: '33%'}}>
+            <div style={{ display: "flex", justifyContent: "flex-end", alignItems: 'center' }}>
+            <MenuItem />            
+
+            </div>
           </NotHidden>
           <Burger onClick={showDrawer}>
             <Outline />
           </Burger>
-
-          <SvgContainer>
-            {/* <ReactSVG id="SUN" src="/img/svg/LOGO_ICON.svg" className="sun-svg" style={{height:"100%"}} /> */}
-
-            {/* {svgInNavbar && (
-              <>
-                <ReactSVG id="SUN" src="/img/svg/SUN.svg" className="sun-svg" />
-                <ReactSVG id="DAGUARO" src="/img/svg/daguaro.svg" className="daguaro-svg" />
-              </>
-            )} */}
-          </SvgContainer>
-        </Row>
+        </RowContainer>
         <Drawer closable={false} visible={visible} onClose={onClose}>
           <Col style={{ marginBottom: "2.5rem" }}>
             <Label onClick={onClose}>

@@ -24,6 +24,7 @@ const Router = () => {
         backgroundImage="LANDING_BUTTE_2.svg"
         id="intro"
         t="1"
+        svgInNavbar={svgInNavbar}
         setSvgInNavbar={setSvgInNavbar}
       />
       <Header svgInNavbar={svgInNavbar} />
