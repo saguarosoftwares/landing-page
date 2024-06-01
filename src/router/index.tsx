@@ -5,9 +5,6 @@ import Header from "../components/Header";
 import routes from "./config";
 import { Styles } from "../styles/styles";
 
-import MiddleBlockContent from "../content/MiddleBlockContent.json";
-import IntroContent from "../content/IntroContent.json";
-
 const Landing = lazy(() => import("../components/Landing"));
 
 const Router = () => {
@@ -17,13 +14,7 @@ const Router = () => {
     <Suspense fallback={null}>
       <Styles />
       <Landing 
-        title={MiddleBlockContent.title}
-        // content={MiddleBlockContent.text}
-        content={IntroContent.launchText}
-        button={MiddleBlockContent.button}
-        backgroundImage="LANDING_BUTTE_2.svg"
         id="intro"
-        t="1"
         svgInNavbar={svgInNavbar}
         setSvgInNavbar={setSvgInNavbar}
       />
@@ -40,7 +31,7 @@ const Router = () => {
           );
         })}
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </Suspense>
   );
 };
