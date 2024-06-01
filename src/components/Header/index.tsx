@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
@@ -14,10 +14,19 @@ import {
   Label,
   Outline,
   Span,
+  SvgContainer,
+  RowContainer
 } from "./styles";
+import { ReactSVG } from 'react-svg';
 
-const Header = ({ t }: any) => {
+const Header = ({ t, svgInNavbar }: any) => {
+  const [isFixed, setIsFixed] = useState(false);
+
   const [visible, setVisibility] = useState(false);
+
+  const navbarRef = useRef<HTMLDivElement | null>(null);
+
+  const svgHeight = navbarRef.current?.getBoundingClientRect().height;
 
   const showDrawer = () => {
     setVisibility(!visible);
@@ -26,6 +35,31 @@ const Header = ({ t }: any) => {
   const onClose = () => {
     setVisibility(!visible);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const introElement = document.getElementById("intro");
+      if (introElement && !svgInNavbar) {
+        const landingHeight = introElement.offsetHeight;
+        const scrollPosition = window.pageYOffset;
+
+        // Check if the scroll position exceeds the height of the landing component
+        if (scrollPosition > landingHeight) {
+          setIsFixed(true);
+        } else {
+          setIsFixed(false);
+        }
+      } else {
+        console.warn("Element with id 'intro' not found.");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const MenuItem = () => {
     const scrollTo = (id: string) => {
@@ -38,40 +72,71 @@ const Header = ({ t }: any) => {
     return (
       <>
         <CustomNavLinkSmall onClick={() => scrollTo("services")}>
-          <Span>{t("Services")}</Span>
+          <Span>{t("SERVICES")}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
-          <Span>{t("Mission")}</Span>
+        {/* <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
+          <Span>{t("MISSION")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={() => scrollTo("about")}>
-          <Span>{t("About")}</Span>
-        </CustomNavLinkSmall>
+          <Span>{t("ABOUT")}</Span>
+        </CustomNavLinkSmall> */}
         <CustomNavLinkSmall
           style={{ width: "180px" }}
           onClick={() => scrollTo("contact")}
         >
           <Span>
-            <Button>{t("Let's Talk!")}</Button>
+            <Button>{t("LET'S TALK!")}</Button>
           </Span>
         </CustomNavLinkSmall>
       </>
     );
   };
 
+
+
+
   return (
-    <HeaderSection>
+    <HeaderSection id={"navbar"} className={isFixed ? "fixed" : ""} ref={navbarRef}>
       <Container>
-        <Row justify="space-between">
-          <LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" width="250px" height="64px" />
+        <RowContainer /**justify="space-between" align="middle"*/>
+
+          <LogoContainer to="/" aria-label="homepage" style={{ width: '33%' }}>
+            <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" />
           </LogoContainer>
-          <NotHidden>
-            <MenuItem />
+
+          <SvgContainer /**style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}*/>
+            {/**svgInNavbar*/ isFixed ? (
+              <ReactSVG
+                id="LOGO_ICON"
+                src="/img/svg/LOGO_ICON.svg"
+                className="sun-svg"
+                // style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}
+                style={{ width: '80px', height:"auto" }}
+
+              />
+            ) : (
+              <div
+                style={{
+                  width: svgHeight ? `${svgHeight}px` : '10%',
+                  height: '100%',  // Adjust height as needed
+                  backgroundColor: 'transparent' // Set to 'transparent' or the color of the navbar
+                }}
+              />
+            )}
+
+          </SvgContainer>
+
+
+          <NotHidden style={{ width: '33%'}}>
+            <div style={{ display: "flex", justifyContent: "flex-end", alignItems: 'center' }}>
+            <MenuItem />            
+
+            </div>
           </NotHidden>
           <Burger onClick={showDrawer}>
             <Outline />
           </Burger>
-        </Row>
+        </RowContainer>
         <Drawer closable={false} visible={visible} onClose={onClose}>
           <Col style={{ marginBottom: "2.5rem" }}>
             <Label onClick={onClose}>
