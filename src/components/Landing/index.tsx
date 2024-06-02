@@ -66,7 +66,15 @@ const LandingBlock = ({ id, svgInNavbar, setSvgInNavbar }: MiddleBlockProps) => 
 
   const applyUpdatesToLogoComponents = (sunElement = sunRef.current, daguaroElement = daguaroRef.current, parentElement = parentRef.current) => {
     const offsetY = window.scrollY;
-    if (sunElement && daguaroElement && parentElement) {
+    const navbarElement = document.querySelector("#navbar") as HTMLElement;
+
+    if (sunElement && daguaroElement && parentElement && navbarElement) {
+      sunElement.style.display='flex'
+
+      if (navbarElement.getBoundingClientRect().top <= 0 && navbarElement.getBoundingClientRect().height > 0) {
+        sunElement.style.display='none'
+      }
+
       if (sunElement.style.display !== "none" && daguaroElement.style.display !== "none") {
         if (daguaroElement.getBoundingClientRect().top > 0) {
           daguaroElement.style.opacity = "1"
@@ -76,24 +84,18 @@ const LandingBlock = ({ id, svgInNavbar, setSvgInNavbar }: MiddleBlockProps) => 
   
           const newSunWidth = (width * (SUN_STARTING_WIDTH_SIZE/100)) + ((daguaroElement.getBoundingClientRect().height - (width * (SUN_STARTING_WIDTH_SIZE/100))) * relativeScrollY);
           setSunWidth(`${newSunWidth}px`);
-          console.log("sunWidth: ",newSunWidth)
 
         } else if (daguaroElement.getBoundingClientRect().top <= 0 && (offsetY != 0)) {
           daguaroElement.style.opacity = "0"
 
-          const navbarElement = document.querySelector("#navbar") as HTMLElement;
-          if (navbarElement && daguaroRef.current && parentRef.current)  {
-            const maxGrowthScrollY = navbarElement.getBoundingClientRect().top - ((daguaroRef.current.getBoundingClientRect().top) + parentRef.current.getBoundingClientRect().top);
-            // const maxGrowthScrollY = navbarElement.getBoundingClientRect().top - ((parentRef.current.getBoundingClientRect().height - daguaroRef.current.getBoundingClientRect().height) + navbarElement.getBoundingClientRect().top);
+          if (navbarElement && daguaroRef.current && parentRef.current && sunRef.current)  {
+            const maxGrowthScrollY = ((daguaroRef.current.getBoundingClientRect().height));
 
-            // let _offsetY = offsetY - daguaroRef.current.getBoundingClientRect().top;
-            let _offsetY = offsetY - daguaroRef.current.getBoundingClientRect().top;
+            let _offsetY = offsetY - daguaroRef.current.getBoundingClientRect().height;
 
-            const relativeScrollY = Math.min(Math.max(_offsetY / maxGrowthScrollY, 0), 1);
+            const relativeScrollY = Math.min(Math.max(_offsetY / maxGrowthScrollY, 0), 1); 
 
             const newSunWidth = navbarElement.getBoundingClientRect().height + (daguaroRef.current.getBoundingClientRect().height - navbarElement.getBoundingClientRect().height) * (1 - relativeScrollY);
-            
-            console.log("sunWidth: ",newSunWidth)
 
             setSunWidth(`${newSunWidth}px`);
             let innerDaguaro = sunElement.querySelector("#INNER_DAGUARO") as HTMLElement;
@@ -102,10 +104,6 @@ const LandingBlock = ({ id, svgInNavbar, setSvgInNavbar }: MiddleBlockProps) => 
             }
 
           }
-
-
-
-
         }
       }
     }

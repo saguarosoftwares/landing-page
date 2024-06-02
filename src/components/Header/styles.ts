@@ -70,6 +70,11 @@ export const LogoContainer = styled(Link)`
   align-items: center;
   flex: none;  // Prevent growing and shrinking
   padding-left: 1rem;  // Add some padding on the left if needed
+
+  @media only screen and (max-width: 890px) {
+    opacity: 0;
+  }
+
 `;
 
 export const NavLink = styled("div")`
@@ -102,6 +107,7 @@ export const ContactWrapper = styled("div")<any>`
 export const Burger = styled("div")`
   @media only screen and (max-width: 890px) {
     display: block;
+    widht: 33%;
   }
 
   display: none;
