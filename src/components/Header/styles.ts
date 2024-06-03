@@ -71,7 +71,7 @@ export const LogoContainer = styled(Link)`
   flex: none;  // Prevent growing and shrinking
   padding-left: 1rem;  // Add some padding on the left if needed
 
-  @media only screen and (max-width: 890px) {
+  @media only screen and (max-width: 1237px) {
     opacity: 0;
   }
 
@@ -105,7 +105,7 @@ export const ContactWrapper = styled("div")<any>`
 `;
 
 export const Burger = styled("div")`
-  @media only screen and (max-width: 890px) {
+  @media only screen and (max-width: 1237px) {
     display: flex;
     justify-content: flex-end;
     widht: 33%;
@@ -119,7 +119,7 @@ export const Burger = styled("div")`
 `;
 
 export const NotHidden = styled("div")`
-  @media only screen and (max-width: 890px) {
+  @media only screen and (max-width: 1237px) {
     display: none;
   }
 `;
@@ -127,7 +127,7 @@ export const NotHidden = styled("div")`
 export const Hidden = styled("div")`
   display: none;
 
-  @media only screen and (max-width: 890px) {
+  @media only screen and (max-width: 1237px) {
     display: flex;
     widht: 33%;
   }
