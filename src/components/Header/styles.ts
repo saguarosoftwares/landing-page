@@ -106,7 +106,8 @@ export const ContactWrapper = styled("div")<any>`
 
 export const Burger = styled("div")`
   @media only screen and (max-width: 890px) {
-    display: block;
+    display: flex;
+    justify-content: flex-end;
     widht: 33%;
   }
 
@@ -120,6 +121,15 @@ export const Burger = styled("div")`
 export const NotHidden = styled("div")`
   @media only screen and (max-width: 890px) {
     display: none;
+  }
+`;
+
+export const Hidden = styled("div")`
+  display: none;
+
+  @media only screen and (max-width: 890px) {
+    display: flex;
+    widht: 33%;
   }
 `;
 

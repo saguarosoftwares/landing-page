@@ -9,6 +9,7 @@ import {
   LogoContainer,
   Burger,
   NotHidden,
+  Hidden,
   Menu,
   CustomNavLinkSmall,
   Label,
@@ -105,6 +106,10 @@ const Header = ({ t, svgInNavbar }: any) => {
               <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" />
             </LogoContainer>
           </NotHidden>
+          <Hidden id="Sevg" style={{ width: '33%' }}>
+            <span style={{ display: "flex", justifyContent: "flex-start", alignItems: 'center' }}/>
+
+          </Hidden>
 
           <SvgContainer /**style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}*/>
             {/**svgInNavbar*/ isFixed ? (
@@ -128,16 +133,17 @@ const Header = ({ t, svgInNavbar }: any) => {
 
           </SvgContainer>
 
-
           <NotHidden style={{ width: '33%'}}>
             <div style={{ display: "flex", justifyContent: "flex-end", alignItems: 'center' }}>
             <MenuItem />            
 
             </div>
           </NotHidden>
-          <Burger onClick={showDrawer}>
+
+          <Burger onClick={showDrawer} style={{ width: '33%'}}>
             <Outline />
           </Burger>
+
         </RowContainer>
         <Drawer closable={false} visible={visible} onClose={onClose}>
           <Col style={{ marginBottom: "2.5rem" }}>
