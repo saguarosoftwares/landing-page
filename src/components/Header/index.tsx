@@ -100,9 +100,11 @@ const Header = ({ t, svgInNavbar }: any) => {
       <Container>
         <RowContainer /**justify="space-between" align="middle"*/>
 
-          <LogoContainer to="/" aria-label="homepage" style={{ width: '33%' }}>
-            <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" />
-          </LogoContainer>
+          <NotHidden style={{ width: '33%' }}>
+            <LogoContainer to="/" aria-label="homepage" /**style={{ width: '33%' }}*/>
+              <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" />
+            </LogoContainer>
+          </NotHidden>
 
           <SvgContainer /**style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}*/>
             {/**svgInNavbar*/ isFixed ? (
