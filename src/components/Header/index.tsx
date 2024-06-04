@@ -82,27 +82,43 @@ const Header = ({ t, svgInNavbar }: any) => {
   }, []);
 
   const MenuItem = () => {
+    const navbar = document.querySelector("#navbar");
+  
     const scrollTo = (id: string) => {
       const element = document.getElementById(id) as HTMLDivElement;
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-      setVisibility(false);
+      if (element && navbar) {
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbar.getBoundingClientRect().height;
+  
+        // Calculate the maximum scrollable position
+        const maxScrollablePosition = document.documentElement.scrollHeight - window.innerHeight;
+  
+        // Ensure the offset position is within the scrollable range
+        const finalPosition = Math.min(offsetPosition, maxScrollablePosition);
+  
+        window.scrollTo({
+          top: finalPosition,
+          behavior: 'smooth',
+        });
+  
+        setVisibility(false); // Assuming setVisibility is defined somewhere in your component
+      }
     };
+  
     return (
       <>
-        <CustomNavLinkSmall onClick={() => scrollTo("services")}>
-          <Span>{t("SERVICES")}</Span>
+        <CustomNavLinkSmall onClick={() => scrollTo('services')}>
+          <Span>{t('SERVICES')}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
-          <Span>{t("MISSION")}</Span>
+        <CustomNavLinkSmall onClick={() => scrollTo('mission')}>
+          <Span>{t('MISSION')}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("about")}>
-          <Span>{t("ABOUT")}</Span>
+        <CustomNavLinkSmall onClick={() => scrollTo('about')}>
+          <Span>{t('ABOUT')}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
-          style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
+          style={{ width: '180px' }}
+          onClick={() => scrollTo('contact')}
         >
           <Span>
             <Button>{t("LET'S TALK!")}</Button>
@@ -111,6 +127,7 @@ const Header = ({ t, svgInNavbar }: any) => {
       </>
     );
   };
+  
 
 
 
