@@ -1,4 +1,4 @@
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import { ReactSVG } from "react-svg";
 import { MiddleBlockSection } from "./styles";
@@ -6,165 +6,132 @@ import { MiddleBlockSection } from "./styles";
 const SUN_STARTING_WIDTH_SIZE = 6
 const DAGUARO_STARTING_WIDTH_SIZE = 8
 
+
+const useWindowSize = () => {
+  // Initialize state with the current window size
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    // Handler to call on window resize
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty array ensures that effect is only run on mount and unmount
+
+  return windowSize;
+};
+
+
 interface MiddleBlockProps {
-  title: string;
-  content: string[];
-  button: string;
-  backgroundImage?: string;  // Optional background image URL
-  t: any;
   id: string;
   svgInNavbar: boolean;
   setSvgInNavbar: (inNavbar: boolean) => void;
 }
 
-const LandingBlock = ({ title, content, button, backgroundImage, t, id, svgInNavbar, setSvgInNavbar }: MiddleBlockProps) => {
+
+
+
+
+
+
+const LandingBlock = ({ id, svgInNavbar, setSvgInNavbar }: MiddleBlockProps) => {
+
+  const { width } = useWindowSize();
+
+
   const [daguaroPosition, setDaguaroPosition] = useState<'fixed' | 'absolute'>('absolute');
 
-  const sunRef = useRef(null);
-  const daguaroRef = useRef(null);
-  const parentRef = useRef(null);
+  const sunRef = useRef<HTMLDivElement | null>(null);
+  const daguaroRef = useRef<HTMLDivElement | null>(null);
+  const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const daguaroOriginalTopRef = useRef<number | null>(null);
-  const daguaroOriginalHeightRef = useRef<number | null>(null);
-  const sunOriginalHeightRef = useRef<number | null>(null);
-
-  const windowScrollEventListenerAdded = useRef(false); // Flag to track if event listener is added
+  const [sunWidth, setSunWidth] = useState(SUN_STARTING_WIDTH_SIZE + "%");
+  const [daguaroWidth, setDaguaroWidth] = useState(DAGUARO_STARTING_WIDTH_SIZE + "%");
 
 
+  const applyUpdatesToLogoComponents = (sunElement = sunRef.current, daguaroElement = daguaroRef.current, parentElement = parentRef.current) => {
+    const offsetY = window.scrollY;
+    const navbarElement = document.querySelector("#navbar") as HTMLElement;
 
+    if (sunElement && daguaroElement && parentElement && navbarElement) {
+      sunElement.style.display='flex'
 
-  const [sunWidth, setSunWidth] = useState(SUN_STARTING_WIDTH_SIZE+"%");
-  const [daguaroWidth, setDaguaroWidth] = useState(DAGUARO_STARTING_WIDTH_SIZE+"%");
+      if (navbarElement.getBoundingClientRect().top <= 0 && navbarElement.getBoundingClientRect().height > 0) {
+        sunElement.style.display='none'
+      }
 
+      if (sunElement.style.display !== "none" && daguaroElement.style.display !== "none") {
+        if (daguaroElement.getBoundingClientRect().top > 0) {
+          daguaroElement.style.opacity = "1"
 
-
-  useEffect(() => {
-    if (!svgInNavbar){
-      if (daguaroRef.current && sunRef.current) {
-        const daguaroElement = daguaroRef.current as HTMLElement;
-        const sunElement = sunRef.current as HTMLElement;
+          const maxGrowthScrollY = daguaroElement.getBoundingClientRect().top - parentElement.getBoundingClientRect().top;
+          const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
   
-        // Use ResizeObserver to handle dynamic content changes
-        const resizeObserver = new ResizeObserver(() => { // TODO trigger on resize of window..
-          if ( daguaroElement.getBoundingClientRect().height != 0 && daguaroOriginalHeightRef.current == null) {
-            daguaroOriginalHeightRef.current = daguaroElement.getBoundingClientRect().height;
-            console.log('Daguaro height:', daguaroOriginalHeightRef.current);
+          const newSunWidth = (width * (SUN_STARTING_WIDTH_SIZE/100)) + ((daguaroElement.getBoundingClientRect().height - (width * (SUN_STARTING_WIDTH_SIZE/100))) * relativeScrollY);
+          setSunWidth(`${newSunWidth}px`);
+
+        } else if (daguaroElement.getBoundingClientRect().top <= 0 && (offsetY != 0)) {
+          daguaroElement.style.opacity = "0"
+
+          if (navbarElement && daguaroRef.current && parentRef.current && sunRef.current)  {
+            const maxGrowthScrollY = ((daguaroRef.current.getBoundingClientRect().height));
+
+            let _offsetY = offsetY - daguaroRef.current.getBoundingClientRect().height;
+
+            const relativeScrollY = Math.min(Math.max(_offsetY / maxGrowthScrollY, 0), 1); 
+
+            const newSunWidth = navbarElement.getBoundingClientRect().height + (daguaroRef.current.getBoundingClientRect().height - navbarElement.getBoundingClientRect().height) * (1 - relativeScrollY);
+
+            setSunWidth(`${newSunWidth}px`);
+            let innerDaguaro = sunElement.querySelector("#INNER_DAGUARO") as HTMLElement;
+            if (innerDaguaro) {
+              innerDaguaro.style.display = "flex"
+            }
+
           }
-          if ( sunElement.getBoundingClientRect().height != 0 && sunOriginalHeightRef.current == null) {
-            sunOriginalHeightRef.current = sunElement.getBoundingClientRect().height;
-            console.log('Sun height:', sunOriginalHeightRef.current);
-          }
-        });
-  
-        // Observe the daguaro element
-        resizeObserver.observe(daguaroElement);
-  
-        // Cleanup observer on component unmount
-        return () => {
-          resizeObserver.disconnect();
-        };
+        }
       }
     }
+  }
 
-  }, []);
+  useEffect(() => {
+    // TODO should changed positionally based on where we are in the scroll relative to the page.
+    setSunWidth(SUN_STARTING_WIDTH_SIZE + "%")
+    setDaguaroWidth(DAGUARO_STARTING_WIDTH_SIZE + "%")
+    applyUpdatesToLogoComponents();
+  }, [width])
 
   useEffect(() => {
     const handleScroll = debounce(() => {
-      if (!svgInNavbar){
-      const offsetY = window.scrollY;
       window.requestAnimationFrame(() => {
-
-        if (parentRef.current && sunRef.current && daguaroRef.current) {
-          const sunElement = sunRef.current as HTMLElement;
-          const parentElement = parentRef.current as HTMLElement;
-          const daguaroElement = daguaroRef.current as HTMLElement;
-          const navbarElement = document.querySelector("#navbar") as HTMLElement;
-
-          const sunRect = sunElement.getBoundingClientRect();
-          const daguaroRect = daguaroElement.getBoundingClientRect();
-          const parentRect = parentElement.getBoundingClientRect();
-
-
-          if (daguaroOriginalTopRef.current === null) {
-            daguaroOriginalTopRef.current = daguaroRect.top - parentRect.top;  // the original distance from the top of screen (parent) to the top of daguaro ... not always the same since the calculation is made upon first scroll entry (can vary in speed, which will presumably cause value to vary)
-          }
-
-          sunOriginalHeightRef.current = (parentRect.width * SUN_STARTING_WIDTH_SIZE) / 100
-          // daguaroOriginalHeightRef.current = (parentRect.width * DAGUARO_STARTING_WIDTH_SIZE) / 100
-
-
-          // //TODO move daguaro
-          if (offsetY > daguaroOriginalTopRef.current) {
-            setDaguaroPosition('fixed');
-          } else {
-            setDaguaroPosition('absolute');
-          }
-
-          if (daguaroRect.top > 0 && sunElement.style.display !== "none") {
-            const maxGrowthScrollY = daguaroRect.top - parentRect.top;
-            const relativeScrollY = Math.min(Math.max(offsetY / maxGrowthScrollY, 0), 1);
-
-            if (daguaroOriginalHeightRef.current && sunOriginalHeightRef.current) {
-              const newSunWidth = (sunOriginalHeightRef.current) + ((daguaroOriginalHeightRef.current - (sunOriginalHeightRef.current)) * relativeScrollY);
-                setSunWidth(`${newSunWidth}px`);
-            }
-
-          }
-
-
-          //TODO maker smaller block
-          else if ((daguaroRect.top <= 0 && navbarElement && sunElement.style.display !== "none") && (daguaroOriginalHeightRef.current && sunOriginalHeightRef.current)) {
-
-            const navbarRect = navbarElement.getBoundingClientRect();
-
-
-            const maxGrowthScrollY = navbarRect.top - (daguaroOriginalTopRef.current + parentRect.top);
-
-            let _offsetY = offsetY - daguaroOriginalTopRef.current;
-            const relativeScrollY = Math.min(Math.max(_offsetY / maxGrowthScrollY, 0), 1);
-
-            const newSunWidth = navbarRect.height + (daguaroOriginalHeightRef.current - navbarRect.height) * (1 - relativeScrollY);
-
-            console.log(navbarRect.height)
-            setSunWidth(`${newSunWidth}px`);
-
-            let navToDagRatio = (navbarRect.height * .95) / daguaroOriginalHeightRef.current
-
-            const newDaguaroWidth = DAGUARO_STARTING_WIDTH_SIZE - ((DAGUARO_STARTING_WIDTH_SIZE - (DAGUARO_STARTING_WIDTH_SIZE * navToDagRatio)) * (relativeScrollY));
-            setDaguaroWidth(`${newDaguaroWidth}%`);
-          }
-
-          //TODO set in navbar block
-          if (navbarElement) {
-            const navbarRect = navbarElement.getBoundingClientRect();
-
-            if (navbarRect && navbarRect.top <= 0) {
-              setSvgInNavbar(true);
-              daguaroElement.style.display = 'none';
-              sunElement.style.display = 'none';
-            } else {
-              setSvgInNavbar(false);
-              daguaroElement.style.display = 'flex';
-              sunElement.style.display = 'flex';
-            }
-          }
-
-        }
+          applyUpdatesToLogoComponents();
       });
-    }}, 0);
+    }, 0);
 
-    // if (!svgInNavbar){
+
     window.addEventListener('scroll', handleScroll);
-    
+
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-    // }
 
-
-
-  }, [daguaroPosition, setSvgInNavbar]);
+  }, [width]);
 
   return (
     <MiddleBlockSection id={id} style={{ position: 'relative', bottom: 0, zIndex: 2 }} ref={parentRef}>
@@ -196,7 +163,7 @@ const LandingBlock = ({ title, content, button, backgroundImage, t, id, svgInNav
         }}
       >
         <ReactSVG id="DAGUARO" src="/img/svg/daguaro.svg" style={{ width: `${daguaroWidth}`, height: '100%', zIndex: 2 }} />
-      </div> 
+      </div>
     </MiddleBlockSection>
   );
 };

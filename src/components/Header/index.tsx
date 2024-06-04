@@ -9,6 +9,7 @@ import {
   LogoContainer,
   Burger,
   NotHidden,
+  Hidden,
   Menu,
   CustomNavLinkSmall,
   Label,
@@ -21,6 +22,7 @@ import { ReactSVG } from 'react-svg';
 
 const Header = ({ t, svgInNavbar }: any) => {
   const [isFixed, setIsFixed] = useState(false);
+
 
   const [visible, setVisibility] = useState(false);
 
@@ -39,14 +41,32 @@ const Header = ({ t, svgInNavbar }: any) => {
   useEffect(() => {
     const handleScroll = () => {
       const introElement = document.getElementById("intro");
-      if (introElement && !svgInNavbar) {
+      const servicesPage = document.querySelector("#services"); // ASSUMED TO BE FIRST PAGE IN CONTENT BLOCK ...
+      const navbar = document.querySelector("#navbar");
+      const logo_icon = document.querySelector("#LOGO_ICON");
+
+      if (introElement && !svgInNavbar && servicesPage && navbar) {
+        let navbarHeight = navbar.getBoundingClientRect().height;
+
         const landingHeight = introElement.offsetHeight;
         const scrollPosition = window.pageYOffset;
+        const parentElement = servicesPage.parentElement;
 
         // Check if the scroll position exceeds the height of the landing component
-        if (scrollPosition > landingHeight) {
+        if (scrollPosition > landingHeight && !isFixed) {
+          // Set padding on the parent element of #services
+          if (parentElement && !logo_icon) {
+            const currentPaddingTop = window.getComputedStyle(parentElement).paddingTop;
+            const currentPaddingTopValue = parseInt(currentPaddingTop, 10);
+            parentElement.style.paddingTop = `${currentPaddingTopValue + navbarHeight}px`;
+          }
           setIsFixed(true);
-        } else {
+        } else if (logo_icon) {
+          if (parentElement) {
+            const currentPaddingTop = window.getComputedStyle(parentElement).paddingTop;
+            const currentPaddingTopValue = parseInt(currentPaddingTop, 10);
+            parentElement.style.paddingTop = `${currentPaddingTopValue - navbarHeight}px`;
+          }
           setIsFixed(false);
         }
       } else {
@@ -62,27 +82,43 @@ const Header = ({ t, svgInNavbar }: any) => {
   }, []);
 
   const MenuItem = () => {
+    const navbar = document.querySelector("#navbar");
+  
     const scrollTo = (id: string) => {
       const element = document.getElementById(id) as HTMLDivElement;
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-      setVisibility(false);
+      if (element && navbar) {
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbar.getBoundingClientRect().height;
+  
+        // Calculate the maximum scrollable position
+        const maxScrollablePosition = document.documentElement.scrollHeight - window.innerHeight;
+  
+        // Ensure the offset position is within the scrollable range
+        const finalPosition = Math.min(offsetPosition, maxScrollablePosition);
+  
+        window.scrollTo({
+          top: finalPosition,
+          behavior: 'smooth',
+        });
+  
+        setVisibility(false); // Assuming setVisibility is defined somewhere in your component
+      }
     };
+  
     return (
       <>
-        <CustomNavLinkSmall onClick={() => scrollTo("services")}>
-          <Span>{t("SERVICES")}</Span>
+        <CustomNavLinkSmall onClick={() => scrollTo('services')}>
+          <Span>{t('SERVICES')}</Span>
         </CustomNavLinkSmall>
-        {/* <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
-          <Span>{t("MISSION")}</Span>
+        <CustomNavLinkSmall onClick={() => scrollTo('mission')}>
+          <Span>{t('MISSION')}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("about")}>
-          <Span>{t("ABOUT")}</Span>
-        </CustomNavLinkSmall> */}
+        <CustomNavLinkSmall onClick={() => scrollTo('about')}>
+          <Span>{t('ABOUT')}</Span>
+        </CustomNavLinkSmall>
         <CustomNavLinkSmall
-          style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
+          style={{ width: '180px' }}
+          onClick={() => scrollTo('contact')}
         >
           <Span>
             <Button>{t("LET'S TALK!")}</Button>
@@ -91,6 +127,7 @@ const Header = ({ t, svgInNavbar }: any) => {
       </>
     );
   };
+  
 
 
 
@@ -100,9 +137,16 @@ const Header = ({ t, svgInNavbar }: any) => {
       <Container>
         <RowContainer /**justify="space-between" align="middle"*/>
 
-          <LogoContainer to="/" aria-label="homepage" style={{ width: '33%' }}>
-            <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" />
-          </LogoContainer>
+          <NotHidden style={{ width: '33%' }}>
+            <LogoContainer to="/" aria-label="homepage" /**style={{ width: '33%' }}*/>
+              {/* <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" /> */}
+              <SvgIcon src="company_name.svg" width="auto" height="50px" />
+            </LogoContainer>
+          </NotHidden>
+          <Hidden style={{ width: '33%' }}>
+            <span style={{ display: "flex", justifyContent: "flex-start", alignItems: 'center' }}/>
+
+          </Hidden>
 
           <SvgContainer /**style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}*/>
             {/**svgInNavbar*/ isFixed ? (
@@ -126,16 +170,17 @@ const Header = ({ t, svgInNavbar }: any) => {
 
           </SvgContainer>
 
-
-          <NotHidden style={{ width: '33%'}}>
+          <NotHidden style={{ width: '33%', zIndex: "500000"}}>
             <div style={{ display: "flex", justifyContent: "flex-end", alignItems: 'center' }}>
             <MenuItem />            
 
             </div>
           </NotHidden>
-          <Burger onClick={showDrawer}>
+
+          <Burger onClick={showDrawer} style={{ width: '33%'}}>
             <Outline />
           </Burger>
+
         </RowContainer>
         <Drawer closable={false} visible={visible} onClose={onClose}>
           <Col style={{ marginBottom: "2.5rem" }}>
