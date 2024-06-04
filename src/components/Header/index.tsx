@@ -143,7 +143,7 @@ const Header = ({ t, svgInNavbar }: any) => {
               <SvgIcon src="company_name.svg" width="auto" height="50px" />
             </LogoContainer>
           </NotHidden>
-          <Hidden id="Sevg" style={{ width: '33%' }}>
+          <Hidden style={{ width: '33%' }}>
             <span style={{ display: "flex", justifyContent: "flex-start", alignItems: 'center' }}/>
 
           </Hidden>
@@ -170,7 +170,7 @@ const Header = ({ t, svgInNavbar }: any) => {
 
           </SvgContainer>
 
-          <NotHidden style={{ width: '33%'}}>
+          <NotHidden style={{ width: '33%', zIndex: "500000"}}>
             <div style={{ display: "flex", justifyContent: "flex-end", alignItems: 'center' }}>
             <MenuItem />            
 
