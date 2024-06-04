@@ -23,6 +23,7 @@ import { ReactSVG } from 'react-svg';
 const Header = ({ t, svgInNavbar }: any) => {
   const [isFixed, setIsFixed] = useState(false);
 
+
   const [visible, setVisibility] = useState(false);
 
   const navbarRef = useRef<HTMLDivElement | null>(null);
@@ -40,14 +41,32 @@ const Header = ({ t, svgInNavbar }: any) => {
   useEffect(() => {
     const handleScroll = () => {
       const introElement = document.getElementById("intro");
-      if (introElement && !svgInNavbar) {
+      const servicesPage = document.querySelector("#services"); // ASSUMED TO BE FIRST PAGE IN CONTENT BLOCK ...
+      const navbar = document.querySelector("#navbar");
+      const logo_icon = document.querySelector("#LOGO_ICON");
+
+      if (introElement && !svgInNavbar && servicesPage && navbar) {
+        let navbarHeight = navbar.getBoundingClientRect().height;
+
         const landingHeight = introElement.offsetHeight;
         const scrollPosition = window.pageYOffset;
+        const parentElement = servicesPage.parentElement;
 
         // Check if the scroll position exceeds the height of the landing component
-        if (scrollPosition > landingHeight) {
+        if (scrollPosition > landingHeight && !isFixed) {
+          // Set padding on the parent element of #services
+          if (parentElement && !logo_icon) {
+            const currentPaddingTop = window.getComputedStyle(parentElement).paddingTop;
+            const currentPaddingTopValue = parseInt(currentPaddingTop, 10);
+            parentElement.style.paddingTop = `${currentPaddingTopValue + navbarHeight}px`;
+          }
           setIsFixed(true);
-        } else {
+        } else if (logo_icon) {
+          if (parentElement) {
+            const currentPaddingTop = window.getComputedStyle(parentElement).paddingTop;
+            const currentPaddingTopValue = parseInt(currentPaddingTop, 10);
+            parentElement.style.paddingTop = `${currentPaddingTopValue - navbarHeight}px`;
+          }
           setIsFixed(false);
         }
       } else {
@@ -103,7 +122,8 @@ const Header = ({ t, svgInNavbar }: any) => {
 
           <NotHidden style={{ width: '33%' }}>
             <LogoContainer to="/" aria-label="homepage" /**style={{ width: '33%' }}*/>
-              <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" />
+              {/* <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" /> */}
+              <SvgIcon src="company_name.svg" width="auto" height="50px" />
             </LogoContainer>
           </NotHidden>
           <Hidden id="Sevg" style={{ width: '33%' }}>
