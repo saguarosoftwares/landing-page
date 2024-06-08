@@ -108,7 +108,7 @@ export const Burger = styled("div")`
   @media only screen and (max-width: 1237px) {
     display: flex;
     justify-content: flex-end;
-    widht: 33%;
+    widht: 40%;
   }
 
   display: none;
@@ -129,7 +129,7 @@ export const Hidden = styled("div")`
 
   @media only screen and (max-width: 1237px) {
     display: flex;
-    widht: 33%;
+    widht: 40%;
   }
 `;
 

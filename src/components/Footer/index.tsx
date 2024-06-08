@@ -52,24 +52,12 @@ const Footer = ({ t }: any) => {
               </LogoContainer>
             </NavLink>
             <FooterContainer>
-            <SocialLink
-                href="https://github.com/Adrinlol/create-react-app-adrinlol"
-                src="github.svg"
-              />
-              <SocialLink
-                href="https://twitter.com/Adrinlolx"
-                src="twitter.svg"
-              />
-              <SocialLink
-                href="https://www.linkedin.com/in/lasha-kakabadze/"
-                src="linkedin.svg"
-              />
-              <SocialLink
+            {/* <SocialLink
                 href="https://medium.com/@lashakakabadze/"
                 src="medium.svg"
-              />
+              /> */}
 
-              <div style={{ marginRight: '100px' }}>
+              <div style={{ marginRight: 'auto' }}>
                 <a href="mailto:admin@saguarosaas.com?Subject=Inquiry%20about%20Services">
                   <img
                     src="/img/svg/email-icon.svg"
