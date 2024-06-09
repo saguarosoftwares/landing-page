@@ -36,7 +36,6 @@ import { MenuOutlined } from "@ant-design/icons";
 // `;
 
 export const HeaderSection = styled("header")`
-  background-color: #597B73;
   padding: 1rem 0.5rem;
   width: 100%;
   height: auto;

@@ -1,18 +1,27 @@
 import { lazy } from "react";
-import IntroContent from "../../content/IntroContent.json";
-import MiddleBlockContent from "../../content/MiddleBlockContent.json";
 import ServicesContent from "../../content/ServicesContent.json";
 import MissionContent from "../../content/MissionContent.json";
 import AboutContent from "../../content/AboutContent.json";
 import ContactContent from "../../content/ContactContent.json";
+import useBackgroundColor from "./useBackgroundColor";
+
 
 const Contact = lazy(() => import("../../components/ContactForm"));
-const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
 const Container = lazy(() => import("../../common/Container"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
 const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 
 const Home = () => {
+  const sections = [
+    { id: "services", color: "#597B73" },
+    { id: "mission", color: "#FEC654" },
+    { id: "about", color: "#f4dcdc" },
+    { id: "contact", color: "#ffe0b2" },
+  ];
+
+  useBackgroundColor(sections);
+
+
   return (
     <Container>
       <ScrollToTop />
