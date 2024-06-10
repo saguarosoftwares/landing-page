@@ -19,10 +19,11 @@ const LeftContentBlock = ({
   section,
   t,
   id,
+  backgroundColor
 }: ContentBlockProps) => {
   return (
-    <LeftContentSection>
-      <Fade direction="left">
+    <LeftContentSection style={{backgroundColor: backgroundColor}}>
+      {/* <Fade direction="left"> */}
         <Row justify="space-between" align="middle" id={id}>
           <Col lg={11} md={11} sm={12} xs={24}>
             <SvgIcon src={icon} width="100%" height="100%" />
@@ -48,7 +49,7 @@ const LeftContentBlock = ({
             </ContentWrapper>
           </Col>
         </Row>
-      </Fade>
+      {/* </Fade> */}
     </LeftContentSection>
   );
 };
