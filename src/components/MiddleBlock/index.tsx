@@ -24,7 +24,7 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t, id }: MiddleB
 
   return (
     <MiddleBlockSection backgroundImage={backgroundImage}>
-      <Slide direction="up">
+      {/* <Slide direction="up"> */}
         <Row justify="center" align="middle" id={id}>
           <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
@@ -41,7 +41,7 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t, id }: MiddleB
             </Col>
           </ContentWrapper>
         </Row>
-      </Slide>
+      {/* </Slide> */}
     </MiddleBlockSection>
   );  
 };
