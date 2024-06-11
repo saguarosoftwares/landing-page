@@ -56,7 +56,9 @@ const App = () => {
               <Col>
                 <Title as={ColTitle}>
                   {/* <MDBIcon style={{ marginRight: '1rem' }} color='secondary' icon='gem' /> */}
-                  <img src="/img/icons/daguaro.png" alt="" style={{ marginRight: '0.8rem', width:"2.5rem", height:"2.5rem" }} />
+                  <a href="/">
+                    <img src="/img/icons/daguaro.png" alt="" style={{ marginRight: '0.8rem', width:"2.5rem", height:"2.5rem" }} />
+                  </a>
                   Saguaro Software
                 </Title>
                 <ColContent>
