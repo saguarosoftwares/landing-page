@@ -69,7 +69,7 @@ const App = () => {
 
             <MDBCol md='2' lg='2' xl='2'>
               <Col>
-                <Title as={ColTitle}>Our Favorite Stack</Title>
+                <Title as={ColTitle}>Our Specialties</Title>
                 <ColContent>
                   <Text>
                     <TextLink href='https://www.python.org/' target='_blank'>Python</TextLink>
