@@ -19,9 +19,10 @@ const LeftContentBlock = ({
   section,
   t,
   id,
+  backgroundColor
 }: ContentBlockProps) => {
   return (
-    <LeftContentSection>
+    <LeftContentSection style={{backgroundColor: backgroundColor}}>
       {/* <Fade direction="left"> */}
         <Row justify="space-between" align="middle" id={id}>
           <Col lg={11} md={11} sm={12} xs={24}>

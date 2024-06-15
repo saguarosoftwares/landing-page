@@ -7,14 +7,15 @@ import { MiddleBlockSection, Content, ContentWrapper } from "./styles";
 
 interface MiddleBlockProps {
   title: string;
-  content: string[];
-  button: string;
-  backgroundImage?: string;  // Optional background image URL
+  content: string;
+  // button: string;
+  // backgroundImage?: string;  // Optional background image URL
   t: any;
   id: string;
+  backgroundColor: string
 }
 
-const MiddleBlock = ({ title, content, button, backgroundImage, t, id }: MiddleBlockProps) => {
+const MiddleBlock = ({ title, content, t, id, backgroundColor}: MiddleBlockProps) => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id) as HTMLDivElement;
     element.scrollIntoView({
@@ -23,21 +24,13 @@ const MiddleBlock = ({ title, content, button, backgroundImage, t, id }: MiddleB
   };
 
   return (
-    <MiddleBlockSection backgroundImage={backgroundImage}>
+    <MiddleBlockSection style={{backgroundColor: backgroundColor}}>
       {/* <Slide direction="up"> */}
         <Row justify="center" align="middle" id={id}>
           <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
-              {/* <h6>{t(title)}</h6> */}
-              {/* Iterate through the list of strings in the content prop */}
-              {/* {content.map((paragraph, index) => (
-                <Content key={index}>{t(paragraph)}</Content>
-              ))} */}
-              {/* {button && (
-                <Button name="submit" onClick={() => scrollTo("contact")}>
-                  {t(button)}
-                </Button>
-              )} */}
+              <h6>{t(title)}</h6>
+              <p>{t(content)}</p>
             </Col>
           </ContentWrapper>
         </Row>
