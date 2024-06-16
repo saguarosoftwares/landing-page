@@ -117,10 +117,10 @@ const Header = ({ t, svgInNavbar }: any) => {
           <Span>{t('ABOUT')}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
-          style={{ width: '180px' }}
+          style={{ width: 'auto' }}
           onClick={() => scrollTo('contact')}
         >
-          <Span>
+          <Span style={{ padding: '0.5rem 1rem' }}>
             <Button>{t("LET'S TALK!")}</Button>
           </Span>
         </CustomNavLinkSmall>
@@ -137,13 +137,13 @@ const Header = ({ t, svgInNavbar }: any) => {
       <Container>
         <RowContainer /**justify="space-between" align="middle"*/>
 
-          <NotHidden style={{ width: '33%' }}>
+          <NotHidden style={{ width: '40%' }}>
             <LogoContainer to="/" aria-label="homepage" /**style={{ width: '33%' }}*/>
               {/* <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" /> */}
-              <SvgIcon src="company_name.svg" width="auto" height="50px" />
+              <SvgIcon src="company_name.svg" width="auto" height="auto" />
             </LogoContainer>
           </NotHidden>
-          <Hidden style={{ width: '33%' }}>
+          <Hidden style={{ width: '40%' }}>
             <span style={{ display: "flex", justifyContent: "flex-start", alignItems: 'center' }}/>
 
           </Hidden>
@@ -170,14 +170,14 @@ const Header = ({ t, svgInNavbar }: any) => {
 
           </SvgContainer>
 
-          <NotHidden style={{ width: '33%', zIndex: "500000"}}>
+          <NotHidden style={{ width: '40%', zIndex: "500000"}}>
             <div style={{ display: "flex", justifyContent: "flex-end", alignItems: 'center' }}>
             <MenuItem />            
 
             </div>
           </NotHidden>
 
-          <Burger onClick={showDrawer} style={{ width: '33%'}}>
+          <Burger onClick={showDrawer} style={{ width: '40%'}}>
             <Outline />
           </Burger>
 
