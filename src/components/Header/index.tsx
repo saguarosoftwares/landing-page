@@ -41,7 +41,7 @@ const Header = ({ t, svgInNavbar }: any) => {
   useEffect(() => {
     const handleScroll = () => {
       const introElement = document.getElementById("intro");
-      const servicesPage = document.querySelector("#services"); // ASSUMED TO BE FIRST PAGE IN CONTENT BLOCK ...
+      const servicesPage = document.querySelector("#motto"); // TODO ASSUMED TO BE FIRST PAGE IN CONTENT BLOCK ...
       const navbar = document.querySelector("#navbar");
       const logo_icon = document.querySelector("#LOGO_ICON");
 
@@ -110,8 +110,8 @@ const Header = ({ t, svgInNavbar }: any) => {
         <CustomNavLinkSmall onClick={() => scrollTo('services')}>
           <Span>{t('SERVICES')}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo('mission')}>
-          <Span>{t('MISSION')}</Span>
+        <CustomNavLinkSmall onClick={() => scrollTo('process')}>
+          <Span>{t('PROCESS')}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={() => scrollTo('about')}>
           <Span>{t('ABOUT')}</Span>
@@ -133,7 +133,7 @@ const Header = ({ t, svgInNavbar }: any) => {
 
 
   return (
-    <HeaderSection id={"navbar"} className={isFixed ? "fixed" : ""} ref={navbarRef}>
+    <HeaderSection id={"navbar"} className={isFixed ? "fixed" : ""} ref={navbarRef} style={{ backgroundColor: isFixed ? "transparent" : "#597B73" }}>
       <Container>
         <RowContainer /**justify="space-between" align="middle"*/>
 
