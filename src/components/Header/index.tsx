@@ -82,29 +82,34 @@ const Header = ({ t, svgInNavbar }: any) => {
   }, []);
 
   const MenuItem = () => {
-    const navbar = document.querySelector("#navbar");
-  
+    // const navbar = document.querySelector("#navbar");
+
     const scrollTo = (id: string) => {
+      const navbar = document.querySelector("#navbar");
+
+      console.log(id)
       const element = document.getElementById(id) as HTMLDivElement;
+      console.log(element)
+      console.log(navbar)
       if (element && navbar) {
         const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementPosition - navbar.getBoundingClientRect().height;
-  
+
         // Calculate the maximum scrollable position
         const maxScrollablePosition = document.documentElement.scrollHeight - window.innerHeight;
-  
+
         // Ensure the offset position is within the scrollable range
         const finalPosition = Math.min(offsetPosition, maxScrollablePosition);
-  
+
         window.scrollTo({
           top: finalPosition,
           behavior: 'smooth',
         });
-  
+
         setVisibility(false); // Assuming setVisibility is defined somewhere in your component
       }
     };
-  
+
     return (
       <>
         <CustomNavLinkSmall onClick={() => scrollTo('services')}>
@@ -127,75 +132,77 @@ const Header = ({ t, svgInNavbar }: any) => {
       </>
     );
   };
-  
+
 
 
 
 
   return (
-    <HeaderSection id={"navbar"} className={isFixed ? "fixed" : ""} ref={navbarRef} style={{ backgroundColor: isFixed ? "transparent" : "#597B73" }}>
-      <Container>
-        <RowContainer /**justify="space-between" align="middle"*/>
+    <HeaderSection isFixed={isFixed} id={"navbar"} className={isFixed ? "fixed" : ""} ref={navbarRef} style={{ backgroundColor: isFixed ? "transparent" : "#597B73", display: "flex", justifyContent: "center" }}>
+      <div className="floater">
+        <Container>
+            <RowContainer /**justify="space-between" align="middle"*/>
 
-          <NotHidden style={{ width: '40%' }}>
-            <LogoContainer to="/" aria-label="homepage" /**style={{ width: '33%' }}*/>
-              {/* <SvgIcon src="LOGO_MOBILE.svg" width="auto" height="80px" /> */}
-              <SvgIcon src="company_name.svg" width="auto" height="auto" />
-            </LogoContainer>
-          </NotHidden>
-          <Hidden style={{ width: '40%' }}>
-            <span style={{ display: "flex", justifyContent: "flex-start", alignItems: 'center' }}/>
+              <NotHidden style={{ width: '40%' }}>
+                <LogoContainer to="/" aria-label="homepage" /*style={{ width: '100%' }}*/>
+                  <SvgIcon src="company_name.svg" width="auto" height="10%" />
+                </LogoContainer>
+              </NotHidden>
+              <Hidden style={{ width: '40%' }}>
+                <span style={{ display: "flex", justifyContent: "flex-start", alignItems: 'center' }} />
 
-          </Hidden>
+              </Hidden>
 
-          <SvgContainer /**style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}*/>
-            {/**svgInNavbar*/ isFixed ? (
-              <ReactSVG
-                id="LOGO_ICON"
-                src="/img/svg/LOGO_ICON.svg"
-                className="sun-svg"
-                // style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}
-                style={{ width: '80px', height:"auto" }}
+              <SvgContainer /**style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}*/>
+                {/**svgInNavbar*/ isFixed ? (
+                  <ReactSVG
+                    id="LOGO_ICON"
+                    src="/img/svg/LOGO_ICON.svg"
+                    className="sun-svg"
+                    // style={{ width: svgHeight ? `${svgHeight}px` : '10%' }}
+                    style={{ width: '80px', height: "auto" }}
 
-              />
-            ) : (
-              <div
-                style={{
-                  width: svgHeight ? `${svgHeight}px` : '10%',
-                  height: '100%',  // Adjust height as needed
-                  backgroundColor: 'transparent' // Set to 'transparent' or the color of the navbar
-                }}
-              />
-            )}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: svgHeight ? `${svgHeight}px` : '10%',
+                      height: '100%',  // Adjust height as needed
+                      backgroundColor: 'transparent' // Set to 'transparent' or the color of the navbar
+                    }}
+                  />
+                )}
 
-          </SvgContainer>
+              </SvgContainer>
 
-          <NotHidden style={{ width: '40%', zIndex: "500000"}}>
-            <div style={{ display: "flex", justifyContent: "flex-end", alignItems: 'center' }}>
-            <MenuItem />            
+              <NotHidden style={{ width: '40%', zIndex: "500000" }}>
+                <div style={{ /*width: "inherit",*/ display: "flex", justifyContent: "flex-end", alignItems: 'center' }}>
+                  <MenuItem />
 
-            </div>
-          </NotHidden>
+                </div>
+              </NotHidden>
 
-          <Burger onClick={showDrawer} style={{ width: '40%'}}>
-            <Outline />
-          </Burger>
-
-        </RowContainer>
-        <Drawer closable={false} visible={visible} onClose={onClose}>
-          <Col style={{ marginBottom: "2.5rem" }}>
-            <Label onClick={onClose}>
-              <Col span={12}>
-                <Menu>Menu</Menu>
-              </Col>
-              <Col span={12}>
+              <Burger onClick={showDrawer} style={{ width: '40%' }}>
                 <Outline />
+              </Burger>
+
+            </RowContainer>
+            <Drawer closable={false} visible={visible} onClose={onClose}>
+              <Col style={{ marginBottom: "2.5rem" }}>
+                <Label onClick={onClose}>
+                  <Col span={12}>
+                    <Menu>Menu</Menu>
+                  </Col>
+                  <Col span={12}>
+                    <Outline />
+                  </Col>
+                </Label>
               </Col>
-            </Label>
-          </Col>
-          <MenuItem />
-        </Drawer>
-      </Container>
+              <MenuItem />
+            </Drawer>
+        </Container>
+      </div>
+
     </HeaderSection>
   );
 };

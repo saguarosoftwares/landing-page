@@ -50,12 +50,29 @@ const useBackgroundColor = (sections: Section[]) => {
     document.body.style.backgroundColor = backgroundColor;
   }, [backgroundColor]);
 
+  // Apply transition duration to body and theme-color meta tag
+  useEffect(() => {
+    const body = document.body;
+    const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
+    if (backgroundColor === "transparent") {
+      body.style.transition = "background-color 0.5s ease"; // Smooth transition from transparent
+    } else {
+      body.style.transition = "background-color 0.3s ease"; // Faster transition for other colors
+    }
+
+
+    // body.style.transition = "background-color 0.5s ease"; // Smooth transition effect
+
+    return () => {
+      body.style.transition = ""; // Clean up transition on unmount
+    };
+  }, []);
 
   useEffect(() => {
     let backgroundColor = document.body.style.backgroundColor;
-    if (backgroundColor == "transparent") {
-      backgroundColor = "#fff"
-    }
+    // if (backgroundColor == "transparent") {
+    //   // backgroundColor = "#yellow"
+    // }
     const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
     if (themeColorMetaTag) {
       themeColorMetaTag.setAttribute("content", backgroundColor);
@@ -67,7 +84,11 @@ const useBackgroundColor = (sections: Section[]) => {
     }
   }, [backgroundColor]);
 
+  
+
   return backgroundColor;
 };
+
+
 
 export default useBackgroundColor;

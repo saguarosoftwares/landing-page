@@ -61,3 +61,17 @@ export const ContentWrapper = styled("div")`
     max-width: 100%;
   }
 `;
+
+export const Title = styled.h1`
+  color: #FFF;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 20px;
+`;
+
+export const Subtitle = styled.h2`
+  color: #RED;  // Corrected the placeholder color to a valid one
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+`;

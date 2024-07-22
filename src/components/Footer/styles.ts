@@ -11,13 +11,13 @@ export const Footer = styled.footer`
 
 export const Section = styled.section`
   display: flex;
-  justify-content: center;
-  padding: 4rem;
+  // justify-content: center;
+  // padding: 4rem;
   border-bottom: 1px solid #dee2e6;
 `;
 
 export const Connect = styled.div`
-  margin-right: 5rem;
+  // margin-right: 5rem;
   display: none;
   
   @media (min-width: 992px) {
@@ -37,15 +37,22 @@ export const SocialLinks = styled.div`
 `;
 
 export const Container = styled.div`
-  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+
+  margin-top: 4rem;
 `;
 
 export const Row = styled.div`
+  width: 80%;
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   text-align: center;
+  @media only screen and (max-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export const Col = styled.div`

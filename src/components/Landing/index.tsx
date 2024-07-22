@@ -123,6 +123,12 @@ const LandingBlock = ({ id, svgInNavbar, setSvgInNavbar }: MiddleBlockProps) => 
       });
     }, 0);
 
+    // const handleScroll = () => {
+    //   window.requestAnimationFrame(() => {
+    //       applyUpdatesToLogoComponents();
+    //   });
+    // };
+
 
     window.addEventListener('scroll', handleScroll);
 
