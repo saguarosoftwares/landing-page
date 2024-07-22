@@ -6,6 +6,7 @@ interface MiddleBlockSectionProps {
 
 // export const MiddleBlockSection = styled("section")`
 export const MiddleBlockSection = styled.section<MiddleBlockSectionProps>`
+  background-color: #FFFFFF;
   height: auto;
   width: 100%;
   position: relative;

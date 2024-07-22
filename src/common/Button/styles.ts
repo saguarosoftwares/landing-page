@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const StyledButton = styled("button")<any>`
-  background: ${(p) => p.color || "#597B73;"};
+  background: ${(p) => p.color || "#fec654;"};
   color: ${(p) => (p.color ? "#D39381" : "#fff")};
   font-size: 1rem;
   font-weight: 700;
   width: 100%;
   border: 1px solid #edf3f5;
-  border-radius: 4px;
+  border-radius: 30px; /* Increased border-radius for more curved edges */
   padding: 13px 0;
   cursor: pointer;
-  margin-top: 0.625rem;
+  // margin-top: 0.625rem;
   max-width: 180px;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 16px 30px rgb(23 31 114 / 20%);

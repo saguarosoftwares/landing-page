@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const LeftContentSection = styled("section")`
-  background-color: #597B73;
   display: flex;              // Enables flexbox
   justify-content: center;    // Horizontally center the content
   align-items: center;        // Vertically center the content

@@ -31,16 +31,22 @@ export const Styles = createGlobalStyle`
     a {
         font-family: 'Poppins Sans Regular', sans-serif;
     }
+    :root {
+        touch-action: pan-x pan-y;
+        height: 100% 
+    }
 
 
     body {
         // background-color: #eee0d2;
+        // touch-action: pan-y;
+        touch-action: manipulation;
 
         margin:0;
         padding:0;
         border: 0;
         outline: 0;
-        // background: #fff;
+        background: transparent;
         overflow-x: hidden;
     }
 
