@@ -1,10 +1,7 @@
-import React from 'react';
-import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
+import React, { useState, useEffect } from 'react';
+import { MDBIcon } from 'mdb-react-ui-kit';
 import {
   Footer,
-  Section,
-  Connect,
-  SocialLinks,
   Container,
   Row,
   Col,
@@ -16,62 +13,68 @@ import {
   Text,
   TextLink,
 } from './styles';
-
-import Header from '../Header';
+// import './App.css';
 
 const App = () => {
+  const funFacts = [
+    "Did you know that saguaro cacti are found <br />in the Sonoran Desert of Arizona, California, and Mexico?",
+    "Did you know that saguaro cacti can grow <br />up to 40-60 feet (12-18 meters) tall?",
+    "Did you know that saguaro cacti live for <br />over 150 years?",
+    "Did you know that saguaro cacti are slow-growing, <br />taking up to 75 years to grow an arm?",
+    "Did you know that saguaro cacti have shallow <br />root systems to collect rainwater quickly?",
+    "Did you know that saguaro cacti are protected <br />by law in Arizona due to their slow growth?",
+    "Did you know that saguaro cacti blossom white <br />flowers in May and June, pollinated by bats?",
+    "Did you know that saguaro cacti develop red, <br />edible fruits in summer, a source of food for animals and humans?",
+    "Did you know that saguaro cacti provide nesting <br />sites for birds, including Gila woodpeckers?",
+    "Did you know that saguaro cacti are symbolic of <br />the American Southwest?",
+    "Did you know that saguaro cacti are classified <br />as tree-like cacti?",
+    "Did you know that saguaro cacti have thick, <br />pleated stems that store water during dry seasons?",
+    "Did you know that saguaro cacti survive extreme <br />desert temperatures, from below freezing to over 120°F (48°C)?",
+    "Did you know that saguaro cacti are named <br />after the Tohono O'odham word for \"sentinel\"?",
+    "Did you know that Saguaros National Park <br />protects large populations of these cacti?",
+    "Did you know that saguaro cacti are slow to <br />reproduce and rely on birds for seed dispersal?",
+    "Did you know that saguaro cacti are sensitive to <br />frost and are often found in frost-free regions?",
+    "Did you know that saguaro cacti were used by <br />indigenous people for food, water, and building materials?",
+    "Did you know that saguaro cacti face threats <br />from climate change and habitat loss?",
+    "Did you know that saguaro cacti are protected by <br />state and national laws in the U.S.?",
+    "Did you know that saguaro cacti are iconic in <br />Western films and art?",
+    "Did you know that some saguaro cacti grow in <br />crested or cristate forms?",
+    "Did you know that saguaro cacti act as carbon <br />sinks, absorbing carbon dioxide?",
+    "Did you know that saguaro cacti have roots that <br />extend only a few inches underground?",
+    "Did you know that saguaro cacti are adapted to <br />survive in arid conditions with minimal rainfall?"
+  ];
+
+  const [currentFactIndex, setCurrentFactIndex] = useState(0);
+  const [fade, setFade] = useState(false);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setFade(true);
+      setTimeout(() => {
+        setCurrentFactIndex((prevIndex) => (prevIndex + 1) % funFacts.length);
+        setFade(false);
+      }, 500); // Match the duration of the transition
+    }, 10000); // Change fact every 6 seconds
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, [funFacts.length]);
+
   return (
     <Footer>
-      {/* <Section>
-        <Connect>
-          <span>Get connected with us on social networks:</span>
-        </Connect>
-
-        <SocialLinks>
-          <a href='' aria-label='Facebook'>
-            <MDBIcon color='secondary' fab icon='facebook-f' />
-          </a>
-          <a href='' aria-label='Twitter'>
-            <MDBIcon color='secondary' fab icon='twitter' />
-          </a>
-          <a href='' aria-label='Google'>
-            <MDBIcon color='secondary' fab icon='google' />
-          </a>
-          <a href='' aria-label='Instagram'>
-            <MDBIcon color='secondary' fab icon='instagram' />
-          </a>
-          <a href='' aria-label='LinkedIn'>
-            <MDBIcon color='secondary' fab icon='linkedin' />
-          </a>
-          <a href='' aria-label='GitHub'>
-            <MDBIcon color='secondary' fab icon='github' />
-          </a>
-        </SocialLinks>
-      </Section> */}
-
-
-      <div /*style={{ display: "flex", justifyContent:"center", width: "80%" }}*/>
+      <div>
         <Container>
-          {/* <MDBContainer className='text-center text-md-start mt-5'> */}
           <Row>
-            {/* <MDBCol md='3' lg='4' xl='3'> */}
             <Col>
               <Title as={ColTitle}>
-                {/* <MDBIcon style={{ marginRight: '1rem' }} color='secondary' icon='gem' /> */}
                 <a href="/">
                   <img src="/img/icons/daguaro.png" alt="" style={{ marginRight: '0.8rem', width: "2.5rem", height: "2.5rem" }} />
                 </a>
                 Saguaro Software
               </Title>
               <ColContent>
-                <Text>
-                  Did you know that Saguaro <br /> cacti can live over 150 <br /> years and grow up to <br /> 40-60 feet tall?
-                </Text>
+              <Text fade={fade} dangerouslySetInnerHTML={{ __html: funFacts[currentFactIndex] }} />
               </ColContent>
             </Col>
-            {/* </MDBCol> */}
-
-            {/* <MDBCol md='2' lg='2' xl='2'> */}
             <Col>
               <Title as={ColTitle}>Our Specialties</Title>
               <ColContent>
@@ -89,9 +92,6 @@ const App = () => {
                 </Text>
               </ColContent>
             </Col>
-            {/* </MDBCol> */}
-
-            {/* <MDBCol md='3' lg='2' xl='2'> */}
             <Col>
               <Title as={ColTitle}>Other</Title>
               <ColContent>
@@ -109,9 +109,6 @@ const App = () => {
                 </Text>
               </ColContent>
             </Col>
-            {/* </MDBCol> */}
-
-            {/* <MDBCol md='4' lg='3' xl='3'> */}
             <Col>
               <Title as={ColTitle}>Contact</Title>
               <ColContent>
@@ -127,13 +124,9 @@ const App = () => {
                 </Text>
               </ColContent>
             </Col>
-            {/* </MDBCol> */}
           </Row>
-          {/* </MDBContainer> */}
         </Container>
-
       </div>
-
 
       <BottomBar>
         Copyright 2024 © Saguaro Software Solutions LLC -  <FooterLink href='/'>SaguaroSaas.com</FooterLink> - All Rights Reserved.
