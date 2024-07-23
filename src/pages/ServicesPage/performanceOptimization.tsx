@@ -24,7 +24,7 @@ const PerformanceOptimization = () => {
   ];
 
   let backgroundColor = useBackgroundColor(sections)
-  if (backgroundColor == "transparent") {
+  if (backgroundColor === "transparent") {
     backgroundColor = "#597B73";
   } else {
     backgroundColor = "transparent"
