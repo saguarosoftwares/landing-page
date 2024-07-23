@@ -42,9 +42,14 @@ const TechConsultations = () => {
 
         <MiddleBlock
           title="TECH CONSULTATION"
-          content= "this is a placeholder for tech consultation."
+          content= "Your Detailed Guide for Tech Consultation."
           id="motto"
           backgroundColor={backgroundColor}
+        />
+
+        <div
+          className="content-container"
+          dangerouslySetInnerHTML={{ __html: TechConsultationsContent }}
         />
 
         <Contact

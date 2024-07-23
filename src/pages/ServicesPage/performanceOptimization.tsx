@@ -47,6 +47,11 @@ const PerformanceOptimization = () => {
           backgroundColor={backgroundColor}
         />
 
+        <div
+          className="content-container"
+          dangerouslySetInnerHTML={{ __html: PerformanceOptimizationContent }}
+        />
+
         <Contact
           title={ContactContent.title}
           content={ContactContent.text}

@@ -40,10 +40,15 @@ const CloudSolutions = () => {
         />
 
         <MiddleBlock
-          title="CLOUD MIGRATION"
-          content= "this is a placeholder for Cloud Solutions."
+          title="CLOUD SOLUTIONS"
+          content= "Your detialed Guide for Cloud Solutions."
           id="motto"
           backgroundColor={backgroundColor}
+        />
+
+        <div
+          className="content-container"
+          dangerouslySetInnerHTML={{ __html: CloudSolutionsContent }}
         />
 
         <Contact

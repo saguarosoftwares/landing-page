@@ -42,9 +42,14 @@ const CustomIntegrations = () => {
 
         <MiddleBlock
           title="CUSTOM INTEGRATIONS"
-          content= "this is a placeholder for custom integrations."
+          content= "Your Detailed Guide for Custom Integrations."
           id="motto"
           backgroundColor={backgroundColor}
+        />
+
+        <div
+          className="content-container"
+          dangerouslySetInnerHTML={{ __html: CustomIntegrationsContent }}
         />
 
         <Contact

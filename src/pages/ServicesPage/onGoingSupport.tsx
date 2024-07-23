@@ -43,9 +43,14 @@ const OnGoingSupport = () => {
 
         <MiddleBlock
           title="ON-GOING SUPPORT"
-          content= "this is a placeholder for on-going support."
+          content= "Your Detailed Guide for On-Going Support."
           id="motto"
           backgroundColor={backgroundColor}
+        />
+
+        <div
+          className="content-container"
+          dangerouslySetInnerHTML={{ __html: OnGoingSupportContent }}
         />
 
         <Contact

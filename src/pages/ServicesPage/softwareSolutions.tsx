@@ -42,9 +42,14 @@ const SoftwareSolutions = () => {
 
         <MiddleBlock
           title="SOFTWARE SOLUTIONS"
-          content= "this is a placeholder for software solutions."
+          content= "Your Detailed Guide for Software Solutions."
           id="motto"
           backgroundColor={backgroundColor}
+        />
+
+        <div
+          className="content-container"
+          dangerouslySetInnerHTML={{ __html: SoftwareSolutionsContent }}
         />
 
         <Contact
